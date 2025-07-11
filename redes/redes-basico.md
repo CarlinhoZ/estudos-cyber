@@ -26,3 +26,23 @@ Os switches são dispositivos dedicados dentro de uma rede que são projetados p
 
 ## O que é um roteador?
 É função de um roteador conectar redes e passar dados entre elas. Roteamento é o rótulo dado ao processo de deslocamento de dados pelas redes. O roteamento envolve a criação de um caminho entre as redes para que esses dados possam ser entregues com sucesso.
+
+## ARP
+O Protocolo de Resolução de Endereços (ARP) é responsável por encontrar o endereço MAC (hardware) relacionado a um endereço IP específico. Ele funciona transmitindo uma consulta ARP: "Quem tem este endereço IP?". E a resposta é no formato: "O endereço IP está neste endereço MAC".
+O ARP permite que um dispositivo associe seu endereço MAC a um endereço IP na rede. Cada dispositivo em uma rede manterá um registro dos endereços MAC associados a outros dispositivos.
+Quando os dispositivos desejam se comunicar, eles enviam um broadcast para toda a rede em busca do dispositivo específico. Os dispositivos podem usar o ARP para encontrar o endereço MAC de um dispositivo.
+
+Há dois tipos de mensagem ARP
+
+**Solicitação ARP**
+**Resposta ARP**
+Quando uma **solicitação ARP** é enviada, uma mensagem é transmitida na rede para outros dispositivos perguntando: "Qual é o endereço MAC que possui este endereço IP?". Quando os outros dispositivos recebem essa mensagem, eles só responderão se possuírem esse endereço IP e enviarão uma **resposta ARP** com seu endereço MAC. O dispositivo solicitante agora pode se lembrar desse mapeamento e armazená-lo em seu cache ARP para uso futuro.
+
+## DHCP
+O Dynamic Host Configuration Protocol (DHCP) é um protocolo de gerenciamento de rede usado em redes de protocolo de Internet (IP) para atribuir automaticamente endereços IP e outros parâmetros de comunicação a dispositivos conectados à rede usando uma arquitetura client–server.
+Quando um dispositivo se conecta a uma rede, caso ainda não tenha recebido um endereço IP manualmente, ele envia uma solicitação **(DHCP Discover)** para verificar se há servidores DHCP na rede. O servidor DHCP então responde com um endereço IP que o dispositivo poderia usar **(DHCP Offer)**. O dispositivo então envia uma resposta confirmando que deseja o endereço IP oferecido **(DHCP Request)** e, por fim, o servidor DHCP envia uma resposta confirmando a conclusão da solicitação, e o dispositivo pode começar a usar o endereço IP **(DHCP ACK)**.
+
+DHCP Discover: CLIENTE: "ei, sou novo aqui, poderia me fornecer um IP?"
+DHCP Offer: SERVIDOR: "claro, podes ficar com o 192.168.1.10"
+DHCP Request: CLIENTE: "show, vou ficar com esse endereço IP"
+DHCP ACK: SERVIDOR: "você poderá usar esse endereço IP pelas próximas 24 horas" (ou a quantidade de tempo definida no escopo)
