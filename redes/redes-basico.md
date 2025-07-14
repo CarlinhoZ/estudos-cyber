@@ -171,3 +171,9 @@ Todos os dados enviados recebem uma sequência numérica aleatória e são recon
 Primeiro, o TCP fechará uma conexão assim que um dispositivo determinar que o outro dispositivo recebeu todos os dados com sucesso.
 Como o TCP reserva recursos do sistema em um dispositivo, é recomendável fechar as conexões TCP o mais rápido possível.
 Para iniciar o fechamento de uma conexão TCP, o dispositivo enviará um pacote "FIN" para o outro dispositivo. É claro que, com o TCP, o outro dispositivo também precisará confirmar a confirmação desse pacote.
+
+## UDP/IP
+O User Datagram Protocol (UDP) é outro protocolo usado para comunicar dados entre dispositivos.
+Ao contrário do TCP, o UDP é um protocolo sem estado que não requer uma conexão constante entre os dois dispositivos para que os dados sejam enviados. Por exemplo, o handshake triplo não ocorre, nem há sincronização entre os dois dispositivos.
+O UDP é usado em situações em que os aplicativos podem tolerar a perda de dados (como streaming de vídeo ou bate-papo por voz) ou em cenários em que uma conexão instável não é a solução definitiva.
+Pacotes UDP são muito mais simples que pacotes TCP e têm menos cabeçalhos. No entanto, ambos os protocolos compartilham alguns cabeçalhos padrão.
