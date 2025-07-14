@@ -64,3 +64,42 @@ Qual caminho é o mais confiável? Ou seja, pacotes foram perdidos nesse caminho
 Qual caminho tem a conexão física mais rápida? Ou seja, um caminho usa uma conexão de cobre (mais lenta) ou uma fibra (consideravelmente mais rápida)?
 
 Nesta camada, tudo é tratado através de endereços IP como 192.168.1.100. Dispositivos como roteadores capazes de entregar pacotes usando endereços IP são conhecidos como dispositivos de Camada 3 — porque são capazes de funcionar na terceira camada do modelo OSI.
+
+### Camada de Transporte
+Essa é uma camada extremamente essencial para o transporte de dados pela rede. Quando os dados são enviados entre os dispositivos, eles seguem um dos dois protocolos distintos de rede, que são definidos por alguns fatores específicos. O TCP e o UDP.
+
+**TCP**
+TCP (Transmission Control Protocol) é um protocolo orientado à conexão que requer um handshake TCP triplo para estabelecer uma conexão. O TCP proporciona transferência confiável de dados, controle de fluxo e controle de congestionamento. Protocolos de nível superior, como HTTP, POP3, IMAP e SMTP, utilizam TCP. Este protocolo foi projetado com confiabilidade e garantia em mente. Este protocolo reserva uma conexão constante entre os dois dispositivos durante o tempo necessário para que os dados sejam enviados e recebidos.
+
+Além disso, o TCP incorpora a verificação de erros em seu design. A verificação de erros é a forma como o TCP garante que os dados enviados dos pequenos blocos na camada de sessão (camada 5) foram recebidos e remontados na mesma ordem.
+
+O TCP é usado em situações como compartilhamento de arquivos, navegação na internet ou envio de e-mail. Esse uso se deve ao fato de que esses serviços exigem que os dados sejam precisos e completos.
+Ao envio, um arquivo é dividido em pequenos pedaços de dados (conhecidos como pacotes) a partir do "servidor web", onde o "computador" reconstrói o arquivo.
+
+*Vantagens do TCP*
+
+*Garante a precisão dos dados.
+*Capaz de sincronizar dois dispositivos para evitar que um ao outro seja inundado com dados.
+*Executa muito mais processos para garantir a confiabilidade.
+
+*Desvantagens do TCP*
+
+*Requer uma conexão confiável entre os dois dispositivos. Se um pequeno bloco de dados não for recebido, todo o bloco de dados não poderá ser utilizado.
+*Uma conexão lenta pode causar gargalos em outro dispositivo, pois a conexão ficará reservada no computador receptor o tempo todo.
+*O TCP é significativamente mais lento que o UDP porque mais trabalho precisa ser feito pelos dispositivos que usam este protocolo.
+
+**UDP**
+UDP (User Datagram Protocol) é um protocolo sem conexão; o UDP não exige o estabelecimento de uma conexão. O UDP é adequado para protocolos que dependem de consultas rápidas, como DNS, e para protocolos que priorizam comunicações em tempo real, como conferências de áudio/vídeo e transmissão. Este protocolo não é tão avançado quanto o protocolo TCP. Ele não possui os muitos recursos oferecidos pelo TCP, como verificação de erros e confiabilidade. Na verdade, todos os dados enviados via UDP são enviados ao computador, independentemente de chegarem lá ou não. Não há sincronização entre os dois dispositivos nem garantias.
+
+*Vantagens do UDP*
+
+*UDP é muito mais rápido que o TCP
+*O UDP deixa a camada de aplicação (software do usuário) decidir se há algum controle sobre a velocidade de envio dos pacotes.
+*O UDP não reserva uma conexão contínua em um dispositivo como o TCP faz.
+
+*Desvantagens do UDP*
+
+*O UDP não leva em consideração a garantia de entrega
+*Apesar da flexibilidade para desenvolvedores, se a conexão de internet for lenta, a experiência de usuário será péssima
+
+O UDP é útil em situações em que há pequenos pedaços de dados sendo enviados. Por exemplo, protocolos usados para descobrir dispositivos (ARP e DHCP) ou arquivos maiores, como streaming de vídeo (onde não há problema se alguma parte do vídeo estiver pixelada. Pixels são apenas pedaços de dados perdidos!)
