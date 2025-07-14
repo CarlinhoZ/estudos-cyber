@@ -2,10 +2,10 @@
 
 Um firewall é um dispositivo dentro de uma rede responsável por determinar qual tráfego tem permissão para entrar e sair. Pense em um firewall como a segurança de fronteira de uma rede. Um administrador pode configurar um firewall para permitir ou negar a entrada ou saída de tráfego de uma rede com base em vários fatores, como:
 
-** De onde vem o tráfego? (o firewall foi instruído a aceitar/negar tráfego de uma rede específica?)
-** Para onde o tráfego está indo? (o firewall foi instruído a aceitar/negar tráfego destinado a uma rede específica?)
-** Para qual porta o tráfego se destina? (o firewall foi instruído a aceitar/negar tráfego destinado apenas à porta 80?)
-** Qual protocolo o tráfego está usando? (o firewall foi instruído a aceitar/negar tráfego UDP, TCP ou ambos?)
+* De onde vem o tráfego? (o firewall foi instruído a aceitar/negar tráfego de uma rede específica?)
+* Para onde o tráfego está indo? (o firewall foi instruído a aceitar/negar tráfego destinado a uma rede específica?)
+* Para qual porta o tráfego se destina? (o firewall foi instruído a aceitar/negar tráfego destinado apenas à porta 80?)
+* Qual protocolo o tráfego está usando? (o firewall foi instruído a aceitar/negar tráfego UDP, TCP ou ambos?)
 
 Os firewalls realizam a inspeção de pacotes para determinar as respostas a essas perguntas.
 
