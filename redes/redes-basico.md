@@ -63,10 +63,10 @@ Quando uma **solicitação ARP** é enviada, uma mensagem é transmitida na rede
 O Dynamic Host Configuration Protocol (DHCP) é um protocolo de gerenciamento de rede usado em redes de protocolo de Internet (IP) para atribuir automaticamente endereços IP e outros parâmetros de comunicação a dispositivos conectados à rede usando uma arquitetura client–server.
 Quando um dispositivo se conecta a uma rede, caso ainda não tenha recebido um endereço IP manualmente, ele envia uma solicitação **(DHCP Discover)** para verificar se há servidores DHCP na rede. O servidor DHCP então responde com um endereço IP que o dispositivo poderia usar **(DHCP Offer)**. O dispositivo então envia uma resposta confirmando que deseja o endereço IP oferecido **(DHCP Request)** e, por fim, o servidor DHCP envia uma resposta confirmando a conclusão da solicitação, e o dispositivo pode começar a usar o endereço IP **(DHCP ACK)**.
 
-DHCP Discover: CLIENTE: "ei, sou novo aqui, poderia me fornecer um IP?"
-DHCP Offer: SERVIDOR: "claro, podes ficar com o 192.168.1.10"
-DHCP Request: CLIENTE: "show, vou ficar com esse endereço IP"
-DHCP ACK: SERVIDOR: "você poderá usar esse endereço IP pelas próximas 24 horas" (ou a quantidade de tempo definida no escopo)
+* DHCP Discover: CLIENTE: "ei, sou novo aqui, poderia me fornecer um IP?"
+* DHCP Offer: SERVIDOR: "claro, podes ficar com o 192.168.1.10"
+* DHCP Request: CLIENTE: "show, vou ficar com esse endereço IP"
+* DHCP ACK: SERVIDOR: "você poderá usar esse endereço IP pelas próximas 24 horas" (ou a quantidade de tempo definida no escopo)
 
 ## Modelo OSI (Open Systems Interconnection)
 É um modelo crucial para as redes de computadores, que ditam o que cada dispositivo da rede enviará, receberá e interpretará os dados. Cada camada individual efetua uma tarefa, um processo que se chama encapsulamento.
