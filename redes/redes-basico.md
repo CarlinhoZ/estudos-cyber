@@ -46,3 +46,21 @@ DHCP Discover: CLIENTE: "ei, sou novo aqui, poderia me fornecer um IP?"
 DHCP Offer: SERVIDOR: "claro, podes ficar com o 192.168.1.10"
 DHCP Request: CLIENTE: "show, vou ficar com esse endereço IP"
 DHCP ACK: SERVIDOR: "você poderá usar esse endereço IP pelas próximas 24 horas" (ou a quantidade de tempo definida no escopo)
+
+## Modelo OSI (Open Systems Interconnection)
+É um modelo crucial para as redes de computadores, que ditam o que cada dispositivo da rede enviará, receberá e interpretará os dados. Cada camada individual efetua uma tarefa, um processo que se chama encapsulamento.
+
+### Camada Física
+A primeira camada do medelo OSI, os dispositivos usam sinais elétricos para transferir dados entre si em um sistema de numeração binária (1 e 0). O principal meio físico utilizado é o cabo ethernet conectado aos dispositivos.
+
+### Camada de Enlace
+Dentro de um dispositivo, há uma placa chamada NIC (Network Interface Card), que possui um endereço MAC (Media Access Control) pré definido pela fabricante do dispositivo. Então é a missão da camada de enlace, determinar para aonde as informações devem ir. Também é função desta camada, apresentar os dados em um formato adequado para transmissão.
+
+### Camada de Rede
+É a camada onde ocorre o roteamento e remotagem de dados. O roteamento determina o caminho mais adequado para onde esses dados deverão ser enviados. Os protocolos nessa camada, determinam o melhor caminho por meio do OSPF (Open Shortest Path First) e RIP (Routing Information Protocol). Os fatores que são utilizados para decidir o caminho são:
+
+Qual caminho é o mais curto? Ou seja, tem a menor quantidade de dispositivos pelos quais o pacote precisa viajar.
+Qual caminho é o mais confiável? Ou seja, pacotes foram perdidos nesse caminho antes?
+Qual caminho tem a conexão física mais rápida? Ou seja, um caminho usa uma conexão de cobre (mais lenta) ou uma fibra (consideravelmente mais rápida)?
+
+Nesta camada, tudo é tratado através de endereços IP como 192.168.1.100. Dispositivos como roteadores capazes de entregar pacotes usando endereços IP são conhecidos como dispositivos de Camada 3 — porque são capazes de funcionar na terceira camada do modelo OSI.
