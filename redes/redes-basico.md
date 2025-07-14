@@ -24,8 +24,29 @@ Por último, as topologias em anel são menos propensas a gargalos, como dentro 
 ## O que é um switch?
 Os switches são dispositivos dedicados dentro de uma rede que são projetados para agregar vários outros dispositivos, como computadores, impressoras ou qualquer outro dispositivo compatível com rede. Os switches monitoram qual dispositivo está conectado a qual porta. Dessa forma, quando eles recebem um pacote, em vez de repetir esse pacote para todas as portas como um hub faria, ele apenas o envia para o alvo pretendido, reduzindo assim o tráfego de rede. Tanto os switches quanto os roteadores podem ser conectados entre si. A capacidade de fazer isso aumenta a redundância de uma rede, adicionando vários caminhos para os dados tomarem. Se um caminho for para baixo, outro pode ser usado. Embora isso possa reduzir o desempenho geral de uma rede porque os pacotes precisam levar mais tempo para viajar, não há tempo de inatividade.
 
+Os switches podem facilitar a conexão de vários dispositivos (de 3 a 63) usando cabos Ethernet.
+Os switches podem operar tanto na camada 2 quanto na camada 3 do modelo OSI. No entanto, estes são exclusivos, no sentido de que os switches da camada 2 não podem operar na camada 3.
+
+Agora os switches da camada 3. Esses switches são mais sofisticados que os da camada 2, pois podem executar algumas das responsabilidades de um roteador. Ou seja, esses switches enviarão quadros para os dispositivos (como a camada 2 faz) e roteará os pacotes para outros dispositivos usando o protocolo IP.
+
+## VLAN
+Uma tecnologia chamada VLAN (Virtual Local Area Network) permite que dispositivos específicos dentro de uma rede sejam virtualmente separados. Essa divisão significa que todos podem se beneficiar de recursos como uma conexão com a internet, mas são tratados separadamente. Essa separação de rede proporciona segurança, pois significa que as regras em vigor determinam como dispositivos específicos se comunicam entre si.
+No contexto técnico, por exemplo, o "Departamento de Vendas" e o "Departamento de Contabilidade" poderão acessar a Internet, mas não poderão se comunicar entre si (embora estejam conectados ao mesmo switch).
+
 ## O que é um roteador?
-É função de um roteador conectar redes e passar dados entre elas. Roteamento é o rótulo dado ao processo de deslocamento de dados pelas redes. O roteamento envolve a criação de um caminho entre as redes para que esses dados possam ser entregues com sucesso.
+A função de um roteador é conectar redes e transmitir dados entre elas. Ele faz isso por meio do roteamento.
+Roteamento é o nome dado ao processo de transmissão de dados através de redes. O roteamento envolve a criação de um caminho entre redes para que esses dados possam ser entregues com sucesso. Os roteadores **operam na Camada 3 do modelo OSI.** Eles geralmente apresentam uma interface interativa (como um site ou um console) que permite ao administrador configurar várias regras, como redirecionamento de portas ou firewall.
+O roteamento é útil quando os dispositivos são conectados por vários caminhos, como no diagrama de exemplo abaixo, onde o caminho mais otimizado é escolhido.
+
+Roteadores são dispositivos dedicados e não desempenham as mesmas funções que switches.
+
+A questão é: qual caminho será seguido? Protocolos diferentes decidirão qual caminho deve ser seguido, mas os fatores incluem:
+
+* Qual caminho é o mais curto?
+
+* Qual caminho é o mais confiável?
+
+* Qual caminho tem o meio mais rápido (por exemplo, cobre ou fibra)?
 
 ## ARP
 O Protocolo de Resolução de Endereços (ARP) é responsável por encontrar o endereço MAC (hardware) relacionado a um endereço IP específico. Ele funciona transmitindo uma consulta ARP: "Quem tem este endereço IP?". E a resposta é no formato: "O endereço IP está neste endereço MAC".
