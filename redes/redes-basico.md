@@ -103,3 +103,30 @@ UDP (User Datagram Protocol) é um protocolo sem conexão; o UDP não exige o es
 * Apesar da flexibilidade para desenvolvedores, se a conexão de internet for lenta, a experiência de usuário será péssima
 
 O UDP é útil em situações em que há pequenos pedaços de dados sendo enviados. Por exemplo, protocolos usados para descobrir dispositivos (ARP e DHCP) ou arquivos maiores, como streaming de vídeo (onde não há problema se alguma parte do vídeo estiver pixelada. Pixels são apenas pedaços de dados perdidos!)
+
+### Camada de Sessão
+A camada de sessão cria e mantem a conexão com outro computador para qual os dados se destinam. Quando uma conexão é estabelecida, uma sessão é criada, enquanto esssa conexão estiver ativa, a sessão também estará. Essa camada também é responsável por encerrar conexões quem não estão sendo usadas ou se foram perdidas. Além disso, uma sessão pode conter "pontos de verificação", onde se os dados forem perdidos, apenas os dados mais recentes pecisarão ser enviados, economizando largura de banda. As sessões são únicas, o que significa que os dados só poderão trafegar nas sessões criadas, não poderão trafegar por sessões diferentes.
+
+### Camada de Apresentação
+Esta camada atua como um tradutor de dados de e para a camada de aplicação (camada 7). O computador receptor também compreenderá os dados enviados a um computador em um formato e destinados a outro formato. Por exemplo, quando você envia um e-mail, o outro usuário pode ter um cliente de e-mail diferente do seu, mas o conteúdo do e-mail ainda precisará ser exibido da mesma forma.
+Recursos de segurança, como criptografia de dados (como HTTPS ao visitar um site seguro), ocorrem nesta camada.
+
+### Camada de Aplicação
+A camada de aplicação do modelo OSI é a camada na qual protocolos e regras são estabelecidos para determinar como o usuário deve interagir com os dados enviados ou recebidos.
+Aplicativos cotidianos, como clientes de e-mail, navegadores ou softwares de navegação em servidores de arquivos, como o FileZilla, fornecem uma Graphical User Interface (GUI) amigável para os usuários interagirem com os dados enviados ou recebidos. Outros protocolos incluem o DNS (Domain Name System), que é como os endereços de sites são convertidos em endereços IP.
+
+## Pacotes e Quadros
+Pacotes e quadros são pequenos pedaços de dados que, quando combinados, formam uma informação ou mensagem maior. No entanto, são duas coisas diferentes no modelo OSI. Um quadro está na camada 2 – a camada de enlace de dados, o que significa que não há informações como endereços IP. Seria como colocar um envelope dentro de outro envelope e enviá-lo. O primeiro envelope será o pacote que você enviará, mas, uma vez aberto, o envelope ainda existe e contém dados (este é um quadro).
+Pacotes são uma forma eficiente de comunicar dados entre dispositivos em rede. Como esses dados são trocados em pequenos pedaços, há menos chance de ocorrerem gargalos em uma rede do que grandes mensagens sendo enviadas de uma só vez. Por exemplo, ao carregar uma imagem de um site, ela não é enviada para o seu computador como um todo, mas sim em pequenos pedaços, onde é reconstruída no seu computador.
+
+**TTL (Time-to-Live)**
+Este campo define um temporizador de expiração para que o pacote não obstrua sua rede caso ele nunca consiga alcançar um host.
+
+**Checksum**
+Este campo verifica a integridade de protocolos como TCP/IP. Se algum dado for alterado, este valor será diferente do esperado e, portanto, corrompido.
+
+**Source Address**
+O endereço IP do dispositivo de onde o pacote está sendo enviado para que os dados saibam para onde retornar.
+
+**Destination Address**
+O endereço IP do dispositivo para o qual o pacote está sendo enviado, para que os dados saibam para onde viajar em seguida.
