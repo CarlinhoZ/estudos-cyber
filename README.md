@@ -4,7 +4,7 @@ Aqui vou documentar tudo o que estou aprendendo: redes, linux, hacking web, labs
 
 ## 🔧 Áreas de estudo
 
-- [Redes](./redes/redes-basico.md)
+- [Redes](./redes/)
 - [Linux](./linux/comandos-uteis.md)
 - [Labs e relatórios](./labs/tryhackme/)
 - [Web Hacking (OWASP)](./web-hacking/owasp.md)
