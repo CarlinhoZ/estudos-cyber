@@ -8,11 +8,11 @@ Embora a regra padrão para dados web seja a porta 80, alguns outros protocolos 
 
 ### Portas comuns
 
-**FTP 21** [^1]
+**FTP 21**[^1]
 
 
 
 
 
 
-teste [^1]
+[^1]: teste
