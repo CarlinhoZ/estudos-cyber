@@ -17,6 +17,15 @@ Embora a regra padrão para dados web seja a porta 80, alguns outros protocolos 
 
 Vale ressaltar que esses protocolos seguem apenas os padrões. Ou seja, você pode administrar aplicativos que interagem com esses protocolos em uma porta diferente da padrão (executando um servidor web na porta 8080 em vez da porta padrão 80). Observe, no entanto, que os aplicativos presumirão que o padrão está sendo seguido, portanto, você precisará inserir dois pontos (:) junto com o número da porta.
 
+## Redirecionamento de portas
+O encaminhamento de portas é um componente essencial para conectar aplicativos e serviços à internet. Sem o encaminhamento de portas, aplicativos e serviços, como servidores web, ficam disponíveis apenas para dispositivos dentro da mesma rede direta.
+Por exemplo, dentro dessa rede, o servidor com endereço IP "192.168.1.10" executa um servidor web na porta 80. Sem redirecionamento, somente dois computadores dessa rede poderão acessá-lo (o que é conhecido como intranet).
+
+Se o administrador quisesse que o site fosse acessível ao público (usando a Internet), ele teria que implementar o encaminhamento de porta.
+
+É fácil confundir o redirecionamento de portas com o comportamento de um firewall. No entanto basta entender que o redirecionamento de portas abre portas específicas. Em comparação, os firewalls determinam se o tráfego pode trafegar por essas portas (mesmo que elas estejam abertas pelo encaminhamento de portas).
+O redirecionamento de portas é configurado no roteador de uma rede.
+
 [^1]: O File Transfer Protocol (FTP) é um protocolo desenvolvido para auxiliar na transferência eficiente de arquivos entre sistemas diferentes e até mesmo incompatíveis. Ele suporta dois modos de transferência de arquivos: binário e ASCII (texto). É usado por um aplicativo de compartilhamento de arquivos criado em um modelo cliente-servidor, o que significa que você pode baixar arquivos de um local central.
 [^2]: Secure Shell (SSH) refere-se a um protocolo de rede criptográfico usado na comunicação segura entre dispositivos. O SSH criptografa dados usando algoritmos criptográficos, como o Advanced Encryption System (AES), e é frequentemente usado para fazer login remotamente em um computador ou servidor. É usado para efetuar login com segurança em sistemas por meio de uma interface baseada em texto para gerenciamento.
 [^3]: O HyperText Transfer Protocol (HTTP) é o protocolo que especifica como um navegador e um servidor se comunicam. Seu navegador solicita conteúdo de um servidor usando o protocolo HTTP conforme você navega.
