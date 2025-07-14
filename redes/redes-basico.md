@@ -78,15 +78,15 @@ Ao envio, um arquivo é dividido em pequenos pedaços de dados (conhecidos como 
 
 *Vantagens do TCP*
 
-*Garante a precisão dos dados.
-*Capaz de sincronizar dois dispositivos para evitar que um ao outro seja inundado com dados.
-*Executa muito mais processos para garantir a confiabilidade.
+* Garante a precisão dos dados.
+* Capaz de sincronizar dois dispositivos para evitar que um ao outro seja inundado com dados.
+* Executa muito mais processos para garantir a confiabilidade.
 
 *Desvantagens do TCP*
 
-*Requer uma conexão confiável entre os dois dispositivos. Se um pequeno bloco de dados não for recebido, todo o bloco de dados não poderá ser utilizado.
-*Uma conexão lenta pode causar gargalos em outro dispositivo, pois a conexão ficará reservada no computador receptor o tempo todo.
-*O TCP é significativamente mais lento que o UDP porque mais trabalho precisa ser feito pelos dispositivos que usam este protocolo.
+* Requer uma conexão confiável entre os dois dispositivos. Se um pequeno bloco de dados não for recebido, todo o bloco de dados não poderá ser utilizado.
+* Uma conexão lenta pode causar gargalos em outro dispositivo, pois a conexão ficará reservada no computador receptor o tempo todo.
+* O TCP é significativamente mais lento que o UDP porque mais trabalho precisa ser feito pelos dispositivos que usam este protocolo.
 
 **UDP**
 UDP (User Datagram Protocol) é um protocolo sem conexão; o UDP não exige o estabelecimento de uma conexão. O UDP é adequado para protocolos que dependem de consultas rápidas, como DNS, e para protocolos que priorizam comunicações em tempo real, como conferências de áudio/vídeo e transmissão. Este protocolo não é tão avançado quanto o protocolo TCP. Ele não possui os muitos recursos oferecidos pelo TCP, como verificação de erros e confiabilidade. Na verdade, todos os dados enviados via UDP são enviados ao computador, independentemente de chegarem lá ou não. Não há sincronização entre os dois dispositivos nem garantias.
