@@ -130,3 +130,47 @@ O endereço IP do dispositivo de onde o pacote está sendo enviado para que os d
 
 **Destination Address**
 O endereço IP do dispositivo para o qual o pacote está sendo enviado, para que os dados saibam para onde viajar em seguida.
+
+## TCP/IP
+TCP (Transmission Control Protocol) é um protocolo muito semelhante ao modelo OSI. O protocolo TCP/IP consiste em quatro camadas e é uma versão resumida do modelo OSI. Essas camadas são:
+
+*Aplicação*
+*Transporte*
+*Internet*
+*Interface de Rede*
+
+Muito semelhante ao funcionamento do modelo OSI, as informações são adicionadas a cada camada do modelo TCP à medida que o dado (ou pacote) o atravessa. esse processo é conhecido como encapsulamento — enquanto o inverso desse processo é o desencapsulamento.
+Uma característica definidora do TCP é que ele é baseado em conexão, o que significa que o TCP deve estabelecer uma conexão entre um cliente e um dispositivo que atua como servidor antes que os dados sejam enviados.
+Por isso, o TCP garante que todos os dados enviados serão recebidos na outra extremidade. Esse processo é chamado de handshake triplo.
+
+Os pacotes TCP contêm várias seções de informações, conhecidas como cabeçalhos, que são adicionadas a partir do encapsulamento.
+
+**Source Port:** Este valor é a porta aberta pelo remetente para enviar o pacote TCP. Este valor é escolhido aleatoriamente (dentre as portas de 0 a 65535 que ainda não estão em uso no momento).
+**Destination Port:** Este valor é o número da porta em que um aplicativo ou serviço está sendo executado no host remoto (aquele que recebe os dados); por exemplo, um servidor web em execução na porta 80. Ao contrário da porta de origem, este valor não é escolhido aleatoriamente.
+**Source IP:** Este é o endereço IP do dispositivo que está enviando o pacote.
+**Destination IP:** Este é o endereço IP do dispositivo para o qual o pacote se destina.
+**Sequence Number:** Quando ocorre uma conexão, o primeiro dado transmitido recebe um número aleatório. Explicaremos isso com mais detalhes mais adiante.
+**Acknowledgement Number:** Após um dado receber um número de sequência, o número do próximo dado terá o número de sequência + 1. Também explicaremos isso com mais detalhes mais adiante.
+**Checksum:** Este valor é o que garante a integridade do TCP. Um cálculo matemático é feito onde a saída é memorizada. Quando o dispositivo receptor realiza o cálculo matemático, os dados devem estar corrompidos se a saída for diferente da que foi enviada.
+**Data:** Este cabeçalho é onde os dados, ou seja, bytes de um arquivo que está sendo transmitido, são armazenados.
+**Flag:** Este cabeçalho determina como o pacote deve ser tratado por cada dispositivo durante o processo de handshake. Sinalizadores específicos determinarão comportamentos específicos.
+
+O handshake triplo é um termo usado para o processo de estabelecer uma conexão entre dois dispositivos. O handshake triplo se comunica por meio de algumas mensagens especiais.
+
+**SYN:** Uma mensagem SYN é o pacote inicial enviado por um cliente durante o handshake. Este pacote é usado para iniciar uma conexão e sincronizar os dois dispositivos.
+**SYN/ACK:** Este pacote é enviado pelo dispositivo receptor (servidor) para confirmar a tentativa de sincronização do cliente.
+**ACK:** O pacote de confirmação pode ser usado pelo cliente ou pelo servidor para confirmar que uma série de mensagens/pacotes foram recebidos com sucesso.
+**DATA:** Uma vez estabelecida a conexão, dados (como bytes de um arquivo) são enviados através da mensagem "DATA".
+**FIN:** Este pacote é usado para encerrar a conexão de forma limpa (correta) após sua conclusão.
+**RST:** Este pacote encerra abruptamente toda a comunicação. Este é o último recurso e indica que houve algum problema durante o processo. Por exemplo, se o serviço ou aplicativo não estiver funcionando corretamente ou se o sistema apresentar falhas, como recursos insuficientes.
+
+Todos os dados enviados recebem uma sequência numérica aleatória e são reconstruídos usando essa sequência numérica, incrementada em 1. Ambos os computadores devem concordar com a mesma sequência numérica para que os dados sejam enviados na ordem correta. Essa ordem é definida em três etapas:
+
+**SYN - Cliente:** Aqui está meu Número de Sequência Inicial (ISN) para SINCRONIZAR com (0)
+**SYN/ACK - Servidor:** Aqui está meu Número de Sequência Inicial (ISN) para SINCRONIZAR com (5.000), e eu reconheço sua sequência numérica inicial (0)
+**ACK - Cliente:** Eu reconheço seu Número de Sequência Inicial (ISN) de (5.000), aqui estão alguns dados que são meu ISN+1 (0 + 1)
+
+**Fechando uma Conexão TCP:**
+Primeiro, o TCP fechará uma conexão assim que um dispositivo determinar que o outro dispositivo recebeu todos os dados com sucesso.
+Como o TCP reserva recursos do sistema em um dispositivo, é recomendável fechar as conexões TCP o mais rápido possível.
+Para iniciar o fechamento de uma conexão TCP, o dispositivo enviará um pacote "FIN" para o outro dispositivo. É claro que, com o TCP, o outro dispositivo também precisará confirmar a confirmação desse pacote.
