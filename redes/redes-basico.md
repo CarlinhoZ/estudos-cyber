@@ -93,13 +93,13 @@ UDP (User Datagram Protocol) é um protocolo sem conexão; o UDP não exige o es
 
 *Vantagens do UDP*
 
-*UDP é muito mais rápido que o TCP
-*O UDP deixa a camada de aplicação (software do usuário) decidir se há algum controle sobre a velocidade de envio dos pacotes.
-*O UDP não reserva uma conexão contínua em um dispositivo como o TCP faz.
+* UDP é muito mais rápido que o TCP
+* O UDP deixa a camada de aplicação (software do usuário) decidir se há algum controle sobre a velocidade de envio dos pacotes.
+* O UDP não reserva uma conexão contínua em um dispositivo como o TCP faz.
 
 *Desvantagens do UDP*
 
-*O UDP não leva em consideração a garantia de entrega
-*Apesar da flexibilidade para desenvolvedores, se a conexão de internet for lenta, a experiência de usuário será péssima
+* O UDP não leva em consideração a garantia de entrega
+* Apesar da flexibilidade para desenvolvedores, se a conexão de internet for lenta, a experiência de usuário será péssima
 
 O UDP é útil em situações em que há pequenos pedaços de dados sendo enviados. Por exemplo, protocolos usados para descobrir dispositivos (ARP e DHCP) ou arquivos maiores, como streaming de vídeo (onde não há problema se alguma parte do vídeo estiver pixelada. Pixels são apenas pedaços de dados perdidos!)
