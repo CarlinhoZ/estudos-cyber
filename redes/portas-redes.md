@@ -8,12 +8,12 @@ Embora a regra padrão para dados web seja a porta 80, alguns outros protocolos 
 
 ### Portas comuns
 
-...**FTP 21**[^1]
-...**SSH 22**[^2]
-...**HTTP 80**[^3]
-...**HTTPS 443**[^4]
-...**SMB 445**[^5]
-...**RDP 3389**[^6]
+**FTP 21**[^1]
+**SSH 22**[^2]
+**HTTP 80**[^3]
+**HTTPS 443**[^4]
+**SMB 445**[^5]
+**RDP 3389**[^6]
 
 Vale ressaltar que esses protocolos seguem apenas os padrões. Ou seja, você pode administrar aplicativos que interagem com esses protocolos em uma porta diferente da padrão (executando um servidor web na porta 8080 em vez da porta padrão 80). Observe, no entanto, que os aplicativos presumirão que o padrão está sendo seguido, portanto, você precisará inserir dois pontos (:) junto com o número da porta.
 
