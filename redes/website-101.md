@@ -87,5 +87,6 @@ Quando um usuário tem controle sobre como suas entradas são exibidas, ele pode
 Ex:
 Uma página é vulnerável à injeção de HTML. Ela interpretará qualquer coisa que você inserir como parte do HTML da página, o que significa que você pode inserir elementos HTML maliciosos; por exemplo, <a> (tag de link) para direcionar os usuários a domínios maliciosos sob seu controle. Por exemplo, se você inserir o payload ```<a href="http://hacker.com">freek96w</a>``` no campo de entrada do site anexado, todos os usuários que clicarem nele serão redirecionados para esse site, pois seu <a> malicioso é interpretado como parte do HTML da página.
 
-**Fluxo de processo para conexão em um website**
+### Fluxo de processo para conexão em um website
+
 ``` requisição do site no seu browser >> o DNS busca o IP do servidor web >> conexão ao servidor web >> visualização do website ```
