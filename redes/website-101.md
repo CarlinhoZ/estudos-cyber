@@ -67,8 +67,21 @@ Elementos HTML também podem ter eventos, como "onclick" ou "onhover", que execu
 
 Eventos onclick também podem ser definidos dentro das tags de script JavaScript, e não diretamente nos elementos.
 
+### Exposição de Dados Sensíveis
 
+A Exposição de Dados Sensíveis ocorre quando um site não protege (ou remove) adequadamente informações confidenciais em texto simples para o usuário final; geralmente encontradas no código-fonte do front-end de um site.
 
+Agora sabemos que sites são construídos usando muitos elementos HTML (tags), todos os quais podemos ver simplesmente "visualizando o código-fonte da página". Um desenvolvedor de site pode ter esquecido de remover credenciais de login, links ocultos para partes privadas do site ou outros dados confidenciais exibidos em HTML ou JavaScript.
 
+Informações confidenciais podem ser potencialmente utilizadas para promover o acesso de um invasor a diferentes partes de uma aplicação web. Por exemplo, pode haver comentários em HTML com credenciais de login temporárias e, se você visualizou o código-fonte da página e encontrou isso, você pode usar essas credenciais para efetuar login em outro lugar na aplicação (ou pior, usadas para acessar outros componentes de back-end do site).
+
+Sempre que você estiver avaliando uma aplicação web em busca de problemas de segurança, uma das primeiras coisas que você deve fazer é **revisar o código-fonte da página** para ver se consegue encontrar credenciais de login expostas ou links ocultos.
+
+### HTML Injection
+Injeção de HTML é uma vulnerabilidade que ocorre quando entradas não filtradas do usuário são exibidas na página. Se um site não conseguir sanitizar as entradas do usuário (filtrar qualquer texto "malicioso" que um usuário insira em um site) e essa entrada for usada na página, um invasor pode injetar código HTML em um site vulnerável.
+
+A sanitização de entradas é muito importante para manter um site seguro, pois as informações inseridas por um usuário são frequentemente usadas em outras funcionalidades de front-end e back-end. Uma vulnerabilidade que você explorará em outro laboratório é a injeção de banco de dados, na qual você pode manipular uma consulta de pesquisa de banco de dados para efetuar login como outro usuário, controlando a entrada que é usada diretamente na consulta - mas, por enquanto, vamos nos concentrar na injeção de HTML (que é do lado do cliente).
+
+Quando um usuário tem controle sobre como suas entradas são exibidas, ele pode enviar código HTML (ou JavaScript), e o navegador o utilizará na página, permitindo que o usuário controle a aparência e a funcionalidade da página.
 
 
