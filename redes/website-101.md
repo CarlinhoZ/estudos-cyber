@@ -90,3 +90,24 @@ Uma página é vulnerável à injeção de HTML. Ela interpretará qualquer cois
 ### Fluxo de processo para conexão em um website
 
 ``` requisição do site no seu browser >> o DNS busca o IP do servidor web >> conexão ao servidor web >> visualização do website ```
+
+### Load Balance
+Quando o tráfego de um site começa a ficar muito alto ou ele está executando um aplicativo que precisa de alta disponibilidade, um servidor web pode não ser mais suficiente. Os **Load Balancers** oferecem dois recursos principais: 
+1. garantir que sites com alto tráfego possam lidar com a carga
+2. fornecer um failover caso um servidor pare de responder.
+
+Quando você solicita um site com um Load Balancers, ele recebe sua solicitação primeiro e a encaminha para um dos vários servidores por trás dele. Ele usa diferentes algoritmos para ajudá-lo a decidir qual servidor é o melhor para lidar com a solicitação. Alguns exemplos desses algoritmos são o round-robin, que envia a solicitação para cada servidor por vez, ou o ponderado, que verifica quantas solicitações um servidor está lidando no momento e as envia para o servidor menos ocupado.
+
+Os Load Balancers também realizam verificações periódicas em cada servidor para garantir que estejam funcionando corretamente; isso é chamado de verificação de integridade. Se um servidor não responder adequadamente ou não responder, o Load Balancer interromperá o envio de tráfego até que ele responda adequadamente novamente.
+
+### CDN (Content Delivery Networks)
+
+Uma CDN pode ser um excelente recurso para reduzir o tráfego para um site movimentado. Ela permite hospedar arquivos estáticos do seu site, como JavaScript, CSS, imagens e vídeos, e hospedá-los em milhares de servidores em todo o mundo. Quando um usuário solicita um dos arquivos hospedados, a CDN descobre onde o servidor mais próximo está fisicamente localizado e envia a solicitação para lá, em vez de potencialmente para o outro lado do mundo.
+
+### Bancos de Dados
+
+Frequentemente, os sites precisam de uma maneira de armazenar informações para seus usuários. Os servidores web podem se comunicar com bancos de dados para armazenar e recuperar dados deles. Os bancos de dados podem variar de um simples arquivo de texto simples até clusters complexos de vários servidores, proporcionando velocidade e resiliência. Você encontrará alguns bancos de dados comuns: MySQL, MSSQL, MongoDB, Postgres e outros; cada um com seus recursos específicos.
+
+### WAF (Web Application Firewall)
+
+Um WAF fica entre sua solicitação web e o servidor web; seu objetivo principal é proteger o servidor web contra invasões ou ataques de negação de serviço. Ele analisa as solicitações da web em busca de técnicas comuns de ataque, seja de um navegador real ou de um bot. Também verifica se uma quantidade excessiva de solicitações da web está sendo enviada, utilizando um recurso chamado limitação de taxa, que permite apenas uma determinada quantidade de solicitações de um IP por segundo. Se uma solicitação for considerada um ataque em potencial, ela será descartada e nunca enviada ao servidor web.
