@@ -84,4 +84,6 @@ A sanitização de entradas é muito importante para manter um site seguro, pois
 
 Quando um usuário tem controle sobre como suas entradas são exibidas, ele pode enviar código HTML (ou JavaScript), e o navegador o utilizará na página, permitindo que o usuário controle a aparência e a funcionalidade da página.
 
+Ex:
+Uma página é vulnerável à injeção de HTML. Ela interpretará qualquer coisa que você inserir como parte do HTML da página, o que significa que você pode inserir elementos HTML maliciosos; por exemplo, <a> (tag de link) para direcionar os usuários a domínios maliciosos sob seu controle. Por exemplo, se você inserir o payload ```<a href="http://hacker.com">freek96w</a>``` no campo de entrada do site anexado, todos os usuários que clicarem nele serão redirecionados para esse site, pois seu <a> malicioso é interpretado como parte do HTML da página.
 
