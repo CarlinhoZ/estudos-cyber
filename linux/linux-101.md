@@ -26,6 +26,7 @@ Este operador também é um redirecionador de saída, como o operador anterior (
 Continuando com nosso exemplo anterior, onde temos o arquivo "welcome" que contém o conteúdo "hey". Se usássemos echo para adicionar "hello" ao arquivo usando o operador >, o arquivo agora teria apenas "hello" e não "hey".
 
 O operador >> permite anexar a saída ao final do arquivo — em vez de substituir o conteúdo como:
+
 ```echo hello >> welcome```
 
 ```
@@ -36,10 +37,13 @@ hello
 
 #### Pergunta & Resposta
 Se eu quero rodar um comando em segundo plano, qual operador devo usar?
+
 ```&```
 
 Se eu quisesse substituir o conteúdo de um arquivo chamado "passwords" pela palavra "password123", qual seria meu comando?
+
 ```echo password123 > passwords```
 
 Agora, se eu quisesse adicionar "tryhackme" a este arquivo chamado "passwords", mas também manter "passwords123", qual seria meu comando?
+
 ```echo tryhackme >> passwords```
