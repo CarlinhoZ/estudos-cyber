@@ -32,7 +32,9 @@ Mas, para uma experiência web muito mais rica, também será necessário enviar
 GET / HTTP/1.1
 
 Host: tryhackme.com
+
 User-Agent: Mozilla/5.0 Firefox/87.0
+
 Referer: https://tryhackme.com/
 
 Para detalhar cada linha desta solicitação:
@@ -52,17 +54,26 @@ Linha 5: As solicitações HTTP sempre terminam com uma linha em branco para inf
 HTTP/1.1 200 OK
 
 Servidor: nginx/1.15.8
+
 Data: Sex, 09 de Abr de 2021 13:34:03 GMT
+
 Tipo de conteúdo: text/html
+
 Tamanho do conteúdo: 98
 
 <html>
+  
 <head>
+  
 <title>TryHackMe</title>
+
 </head>
+
 <body>
+  
 Bem-vindo ao TryHackMe.com
 </body>
+
 </html>
 
 Para detalhar cada linha da resposta:
