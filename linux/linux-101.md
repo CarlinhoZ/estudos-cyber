@@ -69,8 +69,25 @@ Este é um diretório raiz exclusivo encontrado em uma instalação do Linux. Ab
 
 O que é útil para nós em testes de penetração é que qualquer usuário pode escrever nesta pasta por padrão. Ou seja, quando temos acesso a uma máquina, ela serve como um bom local para armazenar coisas como nossos scripts de enumeração.
 
+# Edição de texto com nano e VIM
 
+### nano
+Para criar ou editar um arquivo usando o nano, simplesmente usamos ```nano filename``` — substituindo "filename" pelo nome do arquivo que você deseja editar.
+Assim que pressionarmos Enter para executar o comando, o nano será iniciado! Podemos simplesmente começar a inserir ou modificar nosso texto. Você pode navegar por cada linha usando as teclas de seta para cima e para baixo ou iniciar uma nova linha usando a tecla Enter do seu teclado.
+O Nano possui alguns recursos fáceis de lembrar e abrangem os aspectos mais gerais que você espera de um editor de texto, incluindo:
+* Buscar texto
+* Copiar e Colar
+* Ir para um número de linha
+* Descobrir em qual número de linha você está
 
+Você pode usar esses recursos do Nano pressionando a tecla "Ctrl" (representada por um ^ no Linux) e a letra correspondente. Por exemplo, para sair, pressionaríamos "Ctrl" e "X" para sair do Nano.
+
+### VIM
+Alguns dos benefícios do VIM, embora levem muito mais tempo para se familiarizar, incluem:
+
+* Personalizável - você pode modificar os atalhos de teclado conforme sua preferência
+* Destaque de Sintaxe - útil se você estiver escrevendo ou mantendo código, tornando-o uma escolha popular para desenvolvedores de software
+* O VIM funciona em todos os terminais onde o nano não esteja instalado
 
 
 
