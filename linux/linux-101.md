@@ -157,6 +157,54 @@ Alguns dos benefícios do VIM, embora levem muito mais tempo para se familiariza
 * Destaque de Sintaxe - útil se você estiver escrevendo ou mantendo código, tornando-o uma escolha popular para desenvolvedores de software
 * O VIM funciona em todos os terminais onde o nano não esteja instalado
 
+# Download de Arquivos (wget)
+Um recurso fundamental da computação é a capacidade de transferir arquivos. Por exemplo, você pode querer baixar um programa, um script ou até mesmo uma imagem. Felizmente para nós, existem várias maneiras de recuperar esses arquivos.
+
+Vamos abordar o uso do wget. Este comando nos permite baixar arquivos da web via HTTP — como se você estivesse acessando o arquivo em seu navegador. Precisamos apenas fornecer o endereço do recurso que desejamos baixar. Por exemplo, se eu quisesse baixar um arquivo chamado "myfile.txt" para minha máquina, supondo que eu soubesse o endereço da web, seria algo assim:
+
+```wget https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt```
+
+# Transferindo Arquivos do Seu Host - SCP (SSH)
+
+Cópia Segura, ou SCP, é um meio de copiar arquivos com segurança. Ao contrário do comando cp comum, este comando permite transferir arquivos entre dois computadores usando o protocolo SSH para fornecer autenticação e criptografia.
+Trabalhando com um modelo de ORIGEM e DESTINO, o SCP permite:
+* Copiar arquivos e diretórios do seu sistema atual para um sistema remoto
+* Copiar arquivos e diretórios de um sistema remoto para o seu sistema atual
+
+Desde que saibamos os nomes de usuário e senhas de um usuário no seu sistema atual e de um usuário no sistema remoto. Por exemplo:
+* Endereço IP do sistema remoto: 192.168.1.30
+* Usuário no sistema remoto: Ubuntu
+* Nome do arquivo no sistema local: important.txt
+* Nome que desejamos usar para armazenar o arquivo no sistema remoto: registered.txt
+
+Com essas informações, vamos criar nosso comando scp (lembrando que o formato do SCP é apenas ORIGEM e DESTINO)
+
+```scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt```
+
+E agora vamos reverter isso e definir a sintaxe para usar o SCP para copiar um arquivo de um computador remoto no qual não estamos conectados.
+* Endereço IP do sistema remoto: 192.168.1.30
+* Usuário no sistema remoto: Ubuntu
+* Nome do arquivo no sistema remoto: documents.txt
+* Nome que desejamos usar para armazenar o arquivo no nosso sistema: notes.txt
+
+```scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt```
+
+# Armazenando Arquivos do Seu Host - WEB
+
+Documentação Pyhton3 ```https://docs.python.org/3/library/http.server.html```
+
+Máquinas com Ubuntu vêm pré-instaladas com python3. O Python fornece um módulo leve e fácil de usar chamado "HTTPServer". Este módulo transforma seu computador em um servidor web rápido e fácil de usar que você pode usar para armazenar seus próprios arquivos, de onde eles podem ser baixados por outro computador usando comandos como ```curl``` e ```wget```
+
+O "HTTPServer" do Python3 servirá os arquivos no diretório onde você executar o comando, mas isso pode ser alterado fornecendo opções que podem ser encontradas nas páginas do manual. Simplesmente, tudo o que precisamos fazer é executar ```python3 -m http.server``` no terminal para iniciar o módulo.
+Agora, vamos usar o wget para baixar o arquivo usando o endereço 10.10.233.201 e o nome do arquivo. Lembre-se: como o servidor python3 está executando a porta 8000, você precisará especificar isso no seu comando wget. Por exemplo:
+
+```wget http://10.10.233.201:8000/myfile```
+
+Observe que você precisará abrir um novo terminal para usar o wget e sair daquele em que você iniciou o servidor web Python3. Isso ocorre porque, depois que você iniciar o servidor web Python3, ele será executado nesse terminal até que você o cancele.
+
+Lembre-se, você precisará executar o comando wget em outro terminal (mantendo ativo o terminal que está executando o servidor Python3).
+
+
 
 
 
