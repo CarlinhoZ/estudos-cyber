@@ -3,6 +3,11 @@
 ### echo
 Saia qualquer texto que fornecer
 
+### ps
+Veja os processos atualmente rodando na máquina, no usuário atual.
+* O argumento ```aux``` utilizado em conjunto, fornece todos os processos atualmente rodando na máquina, de todos os usuários.
+* O comando ```top``` serve para mostrar, em tempo real, os processos de todos os usuários.
+
 ### whoami
 Descubra qual usuário está logado
 
@@ -204,6 +209,60 @@ Observe que você precisará abrir um novo terminal para usar o wget e sair daqu
 
 Lembre-se, você precisará executar o comando wget em outro terminal (mantendo ativo o terminal que está executando o servidor Python3).
 
+# Processos Ativos no Kernel
+Processos são os programas em execução na sua máquina. Eles são gerenciados pelo kernel, onde cada processo terá um ID associado, também conhecido como PID. O PID aumenta na ordem em que o processo é iniciado. Ou seja, o 60º processo terá um PID de 60.
+
+### Visualizando Processos
+
+Podemos usar o comando amigável ```ps``` para fornecer uma lista dos processos em execução como a sessão do nosso usuário e algumas informações adicionais, como seu código de status, a sessão que o está executando, quanto tempo de uso da CPU ele está usando e o nome do programa ou comando que está sendo executado.
+
+### Gerenciando Processos
+
+Você pode enviar comandos que encerram processos; há uma variedade de tipos de sinais que se correlacionam com o quão "limpo" o processo é tratado pelo kernel. Para encerrar um comando, podemos usar o comando apropriadamente nomeado "kill" e o PID associado que desejamos encerrar. Ou seja, para encerrar o PID 1337, usaríamos ```kill 1337```
+
+Abaixo estão alguns dos comandos que podemos enviar a um processo quando ele é encerrado:
+
+* SIGTERM - Encerra o processo, mas permite que ele execute algumas tarefas de limpeza previamente
+* SIGKILL - Encerra o processo - não realiza nenhuma limpeza posterior
+* SIGSTOP - Interrompe/suspende um processo
+
+### Como os Processos Iniciam?
+
+Vamos começar falando sobre namespaces. O Sistema Operacional (SO) usa namespaces para, em última análise, dividir os recursos disponíveis no computador entre processos (como CPU, RAM e prioridade). Pense nisso como dividir seu computador em fatias — semelhante a um bolo. Os processos dentro dessa fatia terão acesso a uma certa quantidade de poder computacional, porém, será uma pequena parte do que está realmente disponível para todos os processos em geral.
+
+Namespaces são ótimos para segurança, pois são uma forma de isolar processos uns dos outros — somente aqueles que estão no mesmo namespace poderão se ver.
+
+O processo com ID 0 é um processo que é iniciado quando o sistema inicializa. Esse processo é o init do sistema no Ubuntu, como o systemd, que é usado para fornecer uma maneira de gerenciar os processos de um usuário e fica entre o sistema operacional e o usuário.
+
+Por exemplo, assim que um sistema inicializa, o systemd é um dos primeiros processos a ser iniciado. Qualquer programa ou software que queiramos iniciar será iniciado como um processo filho do systemd. Isso significa que ele é controlado pelo systemd, mas será executado como um processo próprio (embora compartilhe os recursos do systemd) para facilitar a identificação e afins.
+
+### Inicializando Processos/Serviços na Inicialização
+
+Alguns aplicativos podem ser iniciados na inicialização do sistema que possuímos. Por exemplo, servidores web, servidores de banco de dados ou servidores de transferência de arquivos. Esses softwares costumam ser críticos e, com frequência, são instruídos a iniciar durante a inicialização do sistema pelos administradores.
+
+Neste exemplo, vamos instruir o servidor web Apache a iniciar o Apache manualmente e, em seguida, instruir o sistema a iniciar o Apache2 na inicialização.
+
+Entramos em cena com o comando ```systemctl``` — este comando nos permite interagir com o processo/daemon do systemd. Continuando com nosso exemplo, systemctl é um comando fácil de usar que possui a seguinte formatação: ```systemctl [opção] [serviço]```
+
+Por exemplo, para instruir o Apache a iniciar, usaremos ```systemctl start apache2```. Se quiséssemos parar o Apache, bastaríamos substituir a [opção] por stop (em vez de start).
+
+Podemos fazer quatro opções com systemctl:
+
+* start
+* stop
+* enable
+* disable
+
+### Introdução ao Primeiro e Segundo Plano no Linux
+
+Os processos podem ser executados em dois estados: em segundo plano e em primeiro plano. Por exemplo, comandos que você executa no seu terminal, como "echo" ou algo do tipo, serão executados em primeiro plano, pois é o único comando fornecido que não foi instruído a ser executado em segundo plano. "Echo" é um ótimo exemplo, pois a saída de echo retornará para você em primeiro plano, mas não em segundo plano.
+
+Por exemplo executamos ```echo "hello world"```, onde esperamos que a saída seja retornada como no início. Mas, após adicionar o operador ```&``` ao comando, recebemos apenas o ID do processo echo em vez da saída real — já que ele está sendo executado em segundo plano.
+
+Isso é ótimo para comandos como copiar arquivos, pois significa que podemos executar o comando em segundo plano e continuar com quaisquer outros comandos que desejarmos (sem ter que esperar a cópia do arquivo terminar primeiro).
+
+Podemos fazer exatamente o mesmo ao executar coisas como scripts — em vez de depender do operador ```&```, podemos usar ```Ctrl + Z``` no teclado para colocar um processo em segundo plano. Também é uma maneira eficaz de "pausar" a execução de um script ou comando.
+Este script continuará repetindo "This will keep on looping until I stop!" até que você pare ou suspenda o processo. Usando Ctrl + Z (conforme indicado por T^Z). Agora nosso terminal não estará mais cheio de mensagens — até que o coloquemos em primeiro plano.
 
 
 
