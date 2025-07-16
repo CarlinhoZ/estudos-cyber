@@ -286,12 +286,23 @@ Um recurso interessante dos crontabs é que eles também suportam o curinga ou a
 Um ótimo site para gerar crontabs é o Cronguru
 Os crontabs podem ser editados usando crontab -e, onde você pode selecionar um editor (como o Nano) para editar seu crontab.
 
+### Pacotes e Repositórios de Software
 
+Quando os desenvolvedores desejam enviar software para a comunidade, eles o enviam para um repositório ```apt```.
 
+Se aprovados, seus programas e ferramentas serão disponibilizados. Dois dos recursos mais vantajosos do Linux se destacam aqui:
+* a acessibilidade do usuário
+* mérito das ferramentas de código aberto.
 
+Ao usar o comando ```ls``` em uma máquina Linux Ubuntu 20.04, esses arquivos servem como gateway/registro.
 
+Embora os fornecedores de sistemas operacionais mantenham seus próprios repositórios, você também pode adicionar repositórios da comunidade à sua lista! Isso permite ampliar os recursos do seu sistema operacional. Repositórios adicionais podem ser adicionados usando o comando ```add-apt-repository``` ou listando outro fornecedor! Por exemplo, alguns fornecedores terão um repositório mais próximo de sua localização geográfica.
 
+### Gerenciando Seus Repositórios (Adicionando e Removendo)
 
+Normalmente, usamos o comando ```apt``` para instalar software em nosso sistema Ubuntu. O comando ```apt``` faz parte do software de gerenciamento de pacotes, também chamado de apt. O Apt contém um conjunto completo de ferramentas que nos permite gerenciar os pacotes e fontes do nosso software, além de instalar ou remover software simultaneamente.
+Embora você possa instalar software usando instaladores de pacotes como o ```dpkg```, os benefícios do apt significam que, sempre que atualizamos nosso sistema, o repositório que contém os softwares que adicionamos também é verificado em busca de atualizações.
 
-
-
+# Logs
+Os logs estão ocalizados no diretório /var/log, esses arquivos e pastas contêm informações de log para aplicativos e serviços em execução no seu sistema. O Sistema Operacional (SO) se tornou bastante eficiente em gerenciar esses logs automaticamente em um processo conhecido como "rotação".
+Esses serviços e logs são uma ótima maneira de monitorar a saúde do seu sistema e protegê-lo. Além disso, os logs de serviços como um servidor web contêm informações sobre cada solicitação, permitindo que desenvolvedores ou administradores diagnostiquem problemas de desempenho ou investiguem a atividade de um intruso.
