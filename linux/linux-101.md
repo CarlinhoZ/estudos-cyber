@@ -53,6 +53,24 @@ Secure Shell (SSH) refere-se a um protocolo de rede criptográfico usado na comu
 
 Para acessar um servidor, por exemplo, em um terminal, utilize o comando ```ssh usuario@IP``` Se estiver correto, o terminal irá requisitar a senha deste usuário.
 
+# Diretórios Comuns
+
+### /etc
+Este diretório raiz é um dos diretórios raiz mais importantes do seu sistema. A pasta etc (abreviação de etcetera) é um local comum para armazenar arquivos de sistema usados pelo seu sistema operacional.
+
+### /var
+O diretório "/var", abreviação de "variable data" (dados variáveis), é uma das principais pastas raiz encontradas em uma instalação Linux. Esta pasta armazena dados que são frequentemente acessados ou gravados por serviços ou aplicativos em execução no sistema. Por exemplo, arquivos de log de serviços e aplicativos em execução são gravados aqui (/var/log), ou outros dados que não estão necessariamente associados a um usuário específico (por exemplo, bancos de dados e similares).
+
+### /root
+Ao contrário do diretório /home, a pasta /root é, na verdade, o diretório inicial do usuário "root" do sistema. Não há nada mais a ser dito sobre essa pasta além da compreensão de que este é o diretório inicial do usuário "root". Vale a pena mencionar, pois a presunção lógica é que esse usuário teria seus dados em um diretório como "/home/root" por padrão.
+
+### /tmp
+Este é um diretório raiz exclusivo encontrado em uma instalação do Linux. Abreviação de "temporário", o diretório /tmp é volátil e é usado para armazenar dados que precisam ser acessados apenas uma ou duas vezes. Semelhante à memória do seu computador, assim que o computador é reiniciado, o conteúdo desta pasta é limpo.
+
+O que é útil para nós em testes de penetração é que qualquer usuário pode escrever nesta pasta por padrão. Ou seja, quando temos acesso a uma máquina, ela serve como um bom local para armazenar coisas como nossos scripts de enumeração.
+
+
+
 
 
 
