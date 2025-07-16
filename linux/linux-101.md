@@ -264,6 +264,34 @@ Isso é ótimo para comandos como copiar arquivos, pois significa que podemos ex
 Podemos fazer exatamente o mesmo ao executar coisas como scripts — em vez de depender do operador ```&```, podemos usar ```Ctrl + Z``` no teclado para colocar um processo em segundo plano. Também é uma maneira eficaz de "pausar" a execução de um script ou comando.
 Este script continuará repetindo "This will keep on looping until I stop!" até que você pare ou suspenda o processo. Usando Ctrl + Z (conforme indicado por T^Z). Agora nosso terminal não estará mais cheio de mensagens — até que o coloquemos em primeiro plano.
 
+### Automação
+Os usuários podem querer agendar uma determinada ação ou tarefa para ocorrer após a inicialização do sistema. Por exemplo, executar comandos, fazer backup de arquivos ou iniciar seus programas favoritos, como Spotify ou Google Chrome.
+
+Vamos falar sobre o processo ```cron```, mas, mais especificamente, como podemos interagir com ele por meio do uso de ```crontabs```. O Crontab é um dos processos iniciados durante a inicialização, responsável por facilitar e gerenciar tarefas do cron.
+Um crontab é simplesmente um arquivo especial com formatação reconhecida pelo processo cron para executar cada linha passo a passo.
+Crontabs requerem 6 valores específicos:
+* ```MIN Em que minuto executar```
+* ```HOUR Em que hora executar```
+* ```DOM Em que dia do mês executar```
+* ```MON Em que mês do ano executar```
+* ```DOW Em que dia da semana executar```
+* ```CMD O comando real que será executado```
+
+Por exemplo um backup de arquivos. Você pode querer fazer backup dos "Documentos" do "ubuntu" a cada 12 horas. Usaríamos a seguinte formatação:
+
+0 */12 * * * cp -R /home/ubuntu/Documentos/var/backups/
+
+Um recurso interessante dos crontabs é que eles também suportam o curinga ou asterisco (*). Se não quisermos fornecer um valor para aquele campo específico, ou seja, não importa o mês, dia ou ano em que ele é executado — apenas que ele seja executado a cada 12 horas — simplesmente colocamos um asterisco.
+
+Um ótimo site para gerar crontabs é o Cronguru
+Os crontabs podem ser editados usando crontab -e, onde você pode selecionar um editor (como o Nano) para editar seu crontab.
+
+
+
+
+
+
+
 
 
 
