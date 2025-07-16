@@ -47,3 +47,13 @@ Se eu quisesse substituir o conteúdo de um arquivo chamado "passwords" pela pal
 Agora, se eu quisesse adicionar "tryhackme" a este arquivo chamado "passwords", mas também manter "passwords123", qual seria meu comando?
 
 ```echo tryhackme >> passwords```
+
+# SSH (Secure Shell)
+Secure Shell (SSH) refere-se a um protocolo de rede criptográfico usado na comunicação segura entre dispositivos. O SSH criptografa dados usando algoritmos criptográficos, como o Advanced Encryption System (AES), e é frequentemente usado para fazer login remotamente em um computador ou servidor. Usando criptografia, qualquer entrada que enviamos em um formato legível por humanos é criptografada para trafegar pela rede — onde é descriptografada ao chegar à máquina remota.
+
+Para acessar um servidor, por exemplo, em um terminal, utilize o comando ```ssh usuario@IP``` Se estiver correto, o terminal irá requisitar a senha deste usuário.
+
+
+
+
+
