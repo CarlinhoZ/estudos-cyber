@@ -200,8 +200,101 @@ O Registro contém informações que o Windows consulta continuamente durante a 
 
 Neste [link](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users) a Microsoft disponibiliza uma documentação de uso do editor de registro para profissionais de TI.
 
+# Windows Update
+O Windows Update é um serviço fornecido pela Microsoft para fornecer atualizações de segurança, melhorias de recursos e patches para o sistema operacional Windows e outros produtos Microsoft, como o Microsoft Defender.
 
+As atualizações geralmente são lançadas na segunda terça-feira de cada mês. Esse dia é chamado de Patch Tuesday. Isso não significa necessariamente que uma atualização/patch crítico precise esperar até o próximo Patch Tuesday para ser lançado. Se a atualização for urgente, a Microsoft a enviará por meio do serviço Windows Update para os dispositivos Windows.
 
+Consulte o link a seguir para ver o Guia de Atualizações de Segurança da Microsoft [aqui](https://msrc.microsoft.com/update-guide).
+
+Dica: Outra maneira de acessar o Windows Update é pela caixa de diálogo Executar, ou CMD, executando o comando control /name Microsoft.WindowsUpdate
+
+Ao longo dos anos, os usuários do Windows se acostumaram a adiar as atualizações do Windows para uma data posterior ou a não instalá-las. Vários motivos levaram a essa ação, um deles sendo o fato de que normalmente é necessário reinicializar o computador após uma atualização do Windows.
+
+A Microsoft resolveu esse problema de forma notável com o Windows 10. As atualizações não podem mais ser ignoradas ou deixadas de lado até serem esquecidas. As atualizações do Windows só podem ser adiadas, mas, eventualmente, a atualização será realizada e seu computador será reiniciado. A Microsoft fornece essas atualizações para manter o dispositivo seguro e protegido.
+
+# Windows Security
+Na aba de informações sobre segurança do Windows, há quatro opções, sendo elas:
+
+*Proteção contra vírus e ameaças
+* Proteção de firewall e rede
+* Controle de aplicativos e navegadores
+* Segurança do dispositivo
+
+Há alguns ícones de status que estão presentes nas opções de segurança, sendo elas:.
+
+* Verde significa que seu dispositivo está suficientemente protegido e não há ações recomendadas.
+* Amarelo significa que há uma recomendação de segurança para você revisar.
+* Vermelho é um aviso de que algo precisa de sua atenção imediata.
+
+## Vírus e ameaças
+A proteção contra vírus e ameaças é dividida em duas partes:
+
+* Ameaças atuais
+* Configurações de proteção contra vírus e ameaças
+
+### Ameaças atuais
+
+**Opções de verificação**
+
+* Verificação rápida - Verifica as pastas do seu sistema onde as ameaças são comumente encontradas.
+* Verificação completa - Verifica todos os arquivos e programas em execução no seu disco rígido. Esta verificação pode levar mais de uma hora.
+* Verificação personalizada - Escolha quais arquivos e locais você deseja verificar.
+
+**Histórico de ameaças**
+
+* Última verificação - O Antivírus Windows Defender verifica automaticamente seu dispositivo em busca de vírus e outras ameaças para ajudar a mantê-lo seguro.
+* Ameaças em quarentena - As ameaças em quarentena foram isoladas e impedidas de serem executadas no seu dispositivo. Elas serão removidas periodicamente.
+* Ameaças permitidas - Ameaças permitidas são itens identificados como ameaças, que você permitiu que fossem executados no seu dispositivo.
+
+### Configurações de proteção contra vírus e ameaças
+
+**Gerenciar configurações**
+
+* Proteção em tempo real - Localiza e impede a instalação ou execução de malware no seu dispositivo.
+* Proteção fornecida pela nuvem - Oferece proteção aprimorada e mais rápida com acesso aos dados de proteção mais recentes na nuvem.
+* Envio automático de amostras - Envie arquivos de amostra para a Microsoft para ajudar a proteger você e outras pessoas contra possíveis ameaças.
+* Acesso controlado a pastas - Proteja arquivos, pastas e áreas de memória do seu dispositivo contra alterações não autorizadas por aplicativos hostis.
+* Exclusões - O Antivírus do Windows Defender não verificará itens que você excluiu.
+* Notificações - O Antivírus do Windows Defender enviará notificações com informações críticas sobre a integridade e a segurança do seu dispositivo.
+* Aviso: Itens excluídos podem conter ameaças que tornam seu dispositivo vulnerável. Use esta opção somente se tiver 100% de certeza do que está fazendo.
+
+**Atualizações de proteção contra vírus e ameaças**
+
+*Verificar atualizações - Verifique manualmente se há atualizações para atualizar as definições do Antivírus do Windows Defender.
+
+**Proteção contra ransomware**
+
+* Acesso controlado a pastas - A proteção contra ransomware requer que este recurso esteja habilitado, o que, por sua vez, requer que a Proteção em Tempo Real esteja habilitada.
+
+## Microsoft Defender SmartScreen.
+
+De acordo com a Microsoft, "o Microsoft Defender SmartScreen protege contra sites e aplicativos de phishing ou malware, além do download de arquivos potencialmente maliciosos".
+
+O documento oficial da Microsoft sobre o [Microsoft Defender SmartScreen](https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-smartscreen/microsoft-defender-smartscreen-overview).
+
+### Verificar aplicativos e arquivos
+
+O Windows Defender SmartScreen ajuda a proteger seu dispositivo verificando aplicativos e arquivos não reconhecidos na web.
+
+### Proteção contra exploits
+
+A proteção contra exploits é integrada ao Windows para ajudar a proteger seu dispositivo contra ataques.
+
+# Volume Shadow Copy Service (VSS)
+Segundo a Microsoft, o Serviço de Cópias de Sombra de Volume (VSS) coordena as ações necessárias para criar uma cópia de sombra consistente (também conhecida como snapshot ou cópia pontual) dos dados a serem copiados.
+
+As Cópias de Sombra de Volume são armazenadas na pasta Informações de Volume do Sistema em cada unidade com a proteção ativada.
+Se o VSS estiver ativado (Proteção do Sistema ativada), você poderá executar as seguintes tarefas nas configurações avançadas do sistema.
+
+* Criar um ponto de restauração
+* Executar restauração do sistema
+* Definir as configurações de restauração
+E* xcluir pontos de restauração
+
+Do ponto de vista da segurança, os criadores de malware conhecem esse recurso do Windows e escrevem códigos em seus malwares para procurar esses arquivos e excluí-los. Isso torna impossível a recuperação de um ataque de ransomware, a menos que você tenha um backup offline/externo.
+
+Você consegue acessar o VSS clicando com o botão direito no disco local C: e clicando em "Configurar Cópia de Sombra".
 
 
 
