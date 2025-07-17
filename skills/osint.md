@@ -27,9 +27,13 @@ O [VirusTotal](https://www.virustotal.com/gui/home/upload) é um site online que
 ## Have I Been Pwned
 O [Have I Been Pwned (HIBP)](https://haveibeenpwned.com) faz uma coisa: informa se um endereço de e-mail apareceu em um vazamento de dados. Encontrar o e-mail de alguém em dados vazados indica vazamento de informações privadas e, mais importante, senhas. Muitos usuários usam a mesma senha em várias plataformas; se uma plataforma for violada, suas senhas em outras plataformas também serão expostas. De fato, as senhas geralmente são armazenadas em formato criptografado; no entanto, muitas senhas não são tão complexas e podem ser recuperadas por meio de uma variedade de ataques.
 
+# Exploits e Vulnerabilidades
 
+## CVE
+O Common Vulnerabilities and Exposures (CVE) é como um dicionário de vulnerabilidades. Ele fornece um identificador padronizado para vulnerabilidades e problemas de segurança em produtos de software e hardware. Cada vulnerabilidade recebe um ID CVE com um formato padronizado, como [CVE-2024-29988](https://nvd.nist.gov/vuln/detail/CVE-2024-29988). Esse identificador exclusivo (ID CVE) garante que todos, desde pesquisadores de segurança até fornecedores e profissionais de TI, estejam se referindo à mesma vulnerabilidade, [CVE-2024-29988](https://nvd.nist.gov/vuln/detail/CVE-2024-29988) neste caso.
 
-
+## Exploit Database
+O [Exploit Database](https://www.exploit-db.com/) lista códigos de exploração de vários autores; alguns desses códigos de exploração são testados e marcados como verificados.
 
 
 
