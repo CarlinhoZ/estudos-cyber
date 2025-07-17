@@ -78,3 +78,131 @@ Para proteger o usuário local com esses privilégios, a Microsoft introduziu o 
 ### Como funciona o UAC?
 Quando um usuário com o tipo de conta "administrador" efetua login em um sistema, a sessão atual não é executada com permissões elevadas. Quando uma operação que requer privilégios de nível superior precisar ser executada, o usuário será solicitado a confirmar se permite a execução da operação.
 [Aqui](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/how-it-works) há uma docuentação oficial da Microsoft sobre UAC.
+
+# Configuração de Sistema (MSConfig)
+O utilitário de configuração do sistema (MSConfig) é usado para solução de problemas avançada e seu principal objetivo é ajudar a diagnosticar problemas de inicialização.
+Documentação oficial da Microsoft relacionado a mais funções presentes no utilitário [aqui](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/system-configuration-utility-troubleshoot-configuration-errors).
+
+O utilitário possui cinco abas na parte superior. Abaixo estão os nomes de cada aba.
+
+1. Geral
+2. Inicialização
+3. Serviços
+4. Inicialização
+5. Ferramentas
+
+* Na aba Geral, podemos selecionar quais dispositivos e serviços do Windows serão carregados na inicialização. As opções são: Normal, Diagnóstico ou Seletivo.
+* Na aba Inicialização, podemos definir várias opções de inicialização para o Sistema Operacional.
+* A aba Serviços lista todos os serviços configurados para o sistema, independentemente de seu estado (em execução ou parado). Um serviço é um tipo especial de aplicativo executado em segundo plano.
+* Na aba Inicialização, você não verá nada de interessante na VM anexada. Abaixo está uma captura de tela da aba Inicialização do MSConfig da minha máquina local.
+* Há uma lista de vários utilitários (ferramentas) na aba Ferramentas que podemos executar para configurar melhor o sistema operacional. Há uma breve descrição de cada ferramenta para fornecer algumas informações sobre sua finalidade.
+
+## Gerenciamento do Computador (compmgmt)
+O utilitário Gerenciamento do Computador (compmgmt) tem três seções principais: Ferramentas do Sistema, Armazenamento e Serviços e Aplicativos.
+
+### Ferramentas do Sistema
+
+Segundo a Microsoft, com o Agendador de Tarefas, podemos criar e gerenciar tarefas comuns que nosso computador executará automaticamente nos horários que especificarmos.
+
+Uma tarefa pode executar um aplicativo, um script, etc., e pode ser configurada para ser executada a qualquer momento. Uma tarefa pode ser executada no login ou no logout. As tarefas também podem ser configuradas para serem executadas em um agendamento específico, por exemplo, a cada cinco minutos.
+
+### Visualizador de Eventos.
+
+O Visualizador de Eventos nos permite visualizar eventos que ocorreram no computador. Esses registros de eventos podem ser vistos como uma trilha de auditoria que pode ser usada para entender a atividade do sistema do computador. Essas informações são frequentemente usadas para diagnosticar problemas e investigar ações executadas no sistema.
+
+O Visualizador de Eventos possui três painéis.
+* O painel à esquerda fornece uma lista hierárquica dos provedores de log de eventos (como mostrado na imagem acima).
+* O painel do meio exibirá uma visão geral e um resumo dos eventos específicos de um provedor selecionado.
+* O painel à direita é o painel de ações.
+
+Existem cinco tipos de eventos que podem ser registrados. A Microsoft fornece uma breve descrição de cada um, em sua [documentação](https://learn.microsoft.com/en-us/windows/win32/eventlog/event-types).
+
+Os logs padrão estão visíveis em Logs do Windows. A Microsoft fornece uma breve descrição de cada um, em sua [documentação](https://learn.microsoft.com/en-us/windows/win32/eventlog/eventlog-key).
+
+# Pastas Compartilhadas
+Pastas compartilhadas é onde você verá uma lista completa de compartilhamentos e pastas compartilhadas às quais outros podem se conectar.
+
+### Compartilhamentos
+Ali estão o compartilhamento padrão do Windows, C$, e os compartilhamentos de administração remota padrão criados pelo Windows, como ADMIN$.
+Como em qualquer objeto no Windows, você pode clicar com o botão direito do mouse em uma pasta para visualizar suas propriedades, como Permissões (quem pode acessar o recurso compartilhado).
+
+### Sessões
+Você verá uma lista de usuários que estão conectados aos compartilhamentos. Nesta VM, você não verá ninguém conectado aos compartilhamentos.
+Todas as pastas e/ou arquivos que os usuários conectados acessam serão listados em Arquivos Abertos.
+
+### Desempenho
+Você verá um utilitário chamado Monitor de Desempenho (perfmon).
+
+O Perfmon é usado para visualizar dados de desempenho em tempo real ou a partir de um arquivo de log. Este utilitário é útil para solucionar problemas de desempenho em um sistema de computador, seja ele local ou remoto.
+
+### Gerenciador de Dispositivos
+Permite visualizar e configurar o hardware, como desabilitar qualquer hardware conectado ao computador.
+
+### Armazenamento
+
+Em Armazenamento, você encontrará Backup e Gerenciamento de Disco do Windows Server e Gerenciamento de Disco.
+O Gerenciamento de Disco é um utilitário de sistema do Windows que permite executar tarefas avançadas de armazenamento. Algumas tarefas são:
+
+* Configurar uma nova unidade
+* Estender uma partição
+* Reduzir uma partição
+* Atribuir ou alterar uma letra de unidade (ex.: E:)
+
+## Ferramenta de Informações do Sistema (msinfo32)
+
+Segundo a Microsoft, "o Windows inclui uma ferramenta chamada Informações do Sistema Microsoft (Msinfo32.exe). Essa ferramenta coleta informações sobre o seu computador e exibe uma visão abrangente do hardware, dos componentes do sistema e do ambiente de software, que você pode usar para diagnosticar problemas no computador."
+
+As informações no Resumo do Sistema são divididas em três seções:
+
+* Recursos de Hardware
+* Componentes
+* Ambiente de Software
+
+### Resumo do Sistema
+Exibirá especificações técnicas gerais do computador, como marca e modelo do processador.
+
+### Recursos de Hardware
+Recursos de hardware são os caminhos de barramento endereçáveis e atribuíveis que permitem que dispositivos periféricos e processadores do sistema se comuniquem entre si. Recursos de hardware normalmente incluem endereços de porta de E/S, vetores de interrupção e blocos de endereços de memória relativos ao barramento.
+
+### Componentes
+Você pode ver informações específicas sobre os dispositivos de hardware instalados no computador. Algumas seções não mostram nenhuma informação, mas outras mostram, como Vídeo e Entrada.
+
+### Ambiente de Software
+Você pode ver informações sobre o software incorporado ao sistema operacional e o software que você instalou. Outros detalhes também são visíveis nesta seção, como as Variáveis de Ambiente e Conexões de Rede.
+
+## Monitor de Recursos (resmon)
+O que é o Monitor de Recursos (resmon)?
+
+De acordo com a Microsoft, "O Monitor de Recursos exibe informações de uso de CPU, memória, disco e rede por processo e agregadas, além de fornecer detalhes sobre quais processos estão usando identificadores de arquivo e módulos individuais. A filtragem avançada permite que os usuários isolem os dados relacionados a um ou mais processos (aplicativos ou serviços), iniciem, parem, pausem e retornem serviços, e fechem aplicativos que não respondem a partir da interface do usuário. Ele também inclui um recurso de análise de processos que pode ajudar a identificar processos travados e conflitos de bloqueio de arquivos, para que o usuário possa tentar resolver o conflito em vez de fechar um aplicativo e potencialmente perder dados."
+
+Este utilitário é voltado principalmente para usuários avançados que precisam executar soluções de problemas avançadas no sistema do computador.
+
+Na guia Visão Geral, o Resmon possui quatro seções:
+
+* CPU
+* Disco
+* Rede
+* Memória
+
+## Prompt de Comando (cmd)
+Neste [link](https://ss64.com/nt/) haverá um A-Z de todos os comandos que podem ser utilizados no CMD.
+
+## Registro do Windows
+O Registro do Windows é um banco de dados hierárquico central usado para armazenar as informações necessárias para configurar o sistema para um ou mais usuários, aplicativos e dispositivos de hardware.
+
+O Registro contém informações que o Windows consulta continuamente durante a operação, como:
+
+* Perfis de cada usuário
+* Aplicativos instalados no computador e os tipos de documentos que cada um pode criar
+*Configurações da folha de propriedades para pastas e ícones de aplicativos
+* Qual hardware existe no sistema
+* As portas que estão sendo utilizadas
+
+Neste [link](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users) a Microsoft disponibiliza uma documentação de uso do editor de registro para profissionais de TI.
+
+
+
+
+
+
+
