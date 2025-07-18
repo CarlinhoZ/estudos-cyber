@@ -8,3 +8,4 @@ Aqui vou documentar tudo o que estou aprendendo: redes, linux, hacking web, labs
 - [Linux](./linux/linux-101.md)
 - [Windows](./windows/windows-101.md)
 - [Skills](./skills/)
+- [Documentação Técnica](./documentacao-tecnica/)
