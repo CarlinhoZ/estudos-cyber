@@ -95,5 +95,72 @@ Controladores de Domínio são o terceiro dispositivo mais comum em um domínio 
 # Group Policy Objects (GPO)
 O Windows gerencia essas políticas por meio de Objetos de Política de Grupo (GPOs). GPOs são um conjunto de configurações que podem ser aplicadas às UOs. GPOs podem conter políticas direcionadas a usuários ou computadores, permitindo que você defina uma linha de base para máquinas e identidades específicas.
 
+Você pode aplicar a Filtragem de Segurança a GPOs para que sejam aplicados apenas a usuários/computadores específicos em uma UO. Por padrão, eles serão aplicados ao grupo Usuários Autenticados, que inclui todos os usuários/PCs.
 
+A aba Configurações inclui o conteúdo real do GPO e nos informa quais configurações específicas ele aplica. Como mencionado anteriormente, cada GPO possui configurações que se aplicam apenas a computadores e configurações que se aplicam apenas a usuários.
 
+## Distribuição de GPO pela rede
+Os GPOs são distribuídos para a rede por meio de um compartilhamento de rede chamado SYSVOL, armazenado no DC. Todos os usuários em um domínio normalmente devem ter acesso a esse compartilhamento na rede para sincronizar seus GPOs periodicamente. O compartilhamento SYSVOL aponta por padrão para o diretório C:\Windows\SYSVOL\sysvol\ em cada um dos DCs da nossa rede.
+Após uma alteração em qualquer GPO, pode levar até 2 horas para que os computadores atualizem, porém há a possibilidade de forçar a sincronização utilizando, via cmd, o comando ```gpupdate /force```
+
+# Métodos de autenticação Windows
+Ao utilizar domínios Windows, todas as credenciais são armazenadas nos Controladores de Domínio. Sempre que um usuário tenta se autenticar em um serviço usando credenciais de domínio, o serviço precisa solicitar ao Controlador de Domínio que verifique se elas estão corretas. Dois protocolos podem ser usados para autenticação de rede em domínios Windows:
+
+* Kerberos: Usado por qualquer versão recente do Windows. Este é o protocolo padrão em qualquer domínio recente.
+* NetNTLM: Protocolo de autenticação legado mantido para fins de compatibilidade.
+
+## Autenticação Kerberos
+
+1. O usuário envia seu nome de usuário e um "carimbo" de data/hora criptografado, usando uma chave derivada de sua senha, ao Centro de Distribuição de Chaves (KDC), responsável por criar tickets Kerberos.
+
+2. O KDC responde com um Ticket Granting Ticket (TGT), permitindo ao usuário solicitar mais tickets para acessar serviços na rede, sem precisar fornecer suas credenciais toda vez. O TGT vem com uma Chave de Sessão que o usuário usará nas próximas solicitações.
+
+3. O TGT é criptografado com o hash de senha da conta krbtgt, o que impede o usuário de acessar seu conteúdo diretamente. O TGT também inclui uma cópia da Chave de Sessão, que o KDC pode recuperar se necessário.
+
+4. Quando o usuário deseja acessar um serviço específico, ele usa o TGT para pedir ao KDC um Ticket de Serviço (TGS). Para isso, envia seu nome de usuário, um timestamp criptografado com a Chave de Sessão, o TGT e o nome do serviço desejado.
+
+5. O KDC responde com um TGS e uma nova Chave de Sessão de Serviço, que o usuário usará para autenticar o serviço. O TGS é criptografado com uma chave derivada do hash da conta do Proprietário do Serviço.
+
+6. O usuário envia o TGS ao serviço para autenticação. O serviço descriptografa o TGS usando o hash de senha de sua conta e valida a Chave de Sessão de Serviço, estabelecendo assim a conexão.
+
+Resumidamente, o processo envolve o uso de tickets criptografados (TGT e TGS) para permitir que o usuário se autentique de forma segura em vários serviços na rede sem precisar fornecer repetidamente suas credenciais.
+
+## Autenticação NetNTLM
+O NetNTLM funciona usando um mecanismo de desafio-resposta. Todo o processo é o seguinte:
+
+1. O cliente envia uma solicitação de autenticação ao servidor que deseja acessar.
+2. O servidor gera um número aleatório e o envia como um desafio ao cliente.
+3. O cliente combina seu hash de senha NTLM com o desafio (e outros dados conhecidos) para gerar uma resposta ao desafio e a envia de volta ao servidor para verificação.
+4. O servidor encaminha o desafio e a resposta ao Controlador de Domínio para verificação.
+5. O controlador de domínio usa o desafio para recalcular a resposta e compará-la com a resposta original enviada pelo cliente. Se ambas corresponderem, o cliente é autenticado; caso contrário, o acesso é negado. O resultado da autenticação é enviado de volta ao servidor.
+6. O servidor encaminha o resultado da autenticação ao cliente.
+
+## Árvores, Florestas e Trusts
+### Árvores
+Imagine, por exemplo, que de repente sua empresa se expande para um novo país. O novo país tem leis e regulamentações diferentes que exigem que você atualize seus GPOs para se adequar. Além disso, agora você tem pessoal de TI em ambos os países, e cada equipe de TI precisa gerenciar os recursos correspondentes a cada país sem interferir na outra equipe. Embora seja possível criar uma estrutura de UO complexa e usar delegações para isso, ter uma estrutura de AD enorme pode ser difícil de gerenciar e propenso a erros humanos.
+
+Felizmente, o Active Directory suporta a integração de vários domínios para que você possa particionar sua rede em unidades que podem ser gerenciadas de forma independente. Se você tiver dois domínios que compartilham o mesmo namespace (thm.local por exemplo), esses domínios podem ser unidos em uma Árvore.
+
+Se o domínio thm.local fosse dividido em dois subdomínios para filiais no Reino Unido e nos EUA, você poderia construir uma árvore com um domínio raiz thm.local e dois subdomínios chamados uk.thm.local e us.thm.local, cada um com seu AD, computadores e usuários.
+
+Essa estrutura particionada nos dá maior controle sobre quem pode acessar o quê no domínio. Os profissionais de TI do Reino Unido terão seu próprio controlador de domínio (DC) que gerencia apenas os recursos do Reino Unido. Por exemplo, um usuário do Reino Unido não poderá gerenciar usuários dos EUA. Dessa forma, os Administradores de Domínio de cada filial terão controle total sobre seus respectivos DCs, mas não sobre os DCs de outras filiais. As políticas também podem ser configuradas independentemente para cada domínio na árvore.
+
+Um novo grupo de segurança precisa ser introduzido ao falar sobre árvores e florestas. O grupo Administradores Corporativos concederá a um usuário privilégios administrativos sobre todos os domínios de uma empresa. Cada domínio ainda terá seus Administradores de Domínio com privilégios de administrador sobre seus domínios individuais e os Administradores Corporativos que podem controlar tudo na empresa.
+
+## Florestas
+
+Os domínios que você gerencia também podem ser configurados em diferentes namespaces. Suponha que sua empresa continue crescendo e, eventualmente, adquira outra empresa chamada MHT Inc. Quando as duas empresas se fundirem, você provavelmente terá árvores de domínio diferentes para cada empresa, cada uma gerenciada por seu próprio departamento de TI. A união de várias árvores com diferentes namespaces na mesma rede é conhecida como floresta.
+
+## Relações de Confiança
+
+Ter vários domínios organizados em árvores e florestas permite que você tenha uma rede bem compartimentada em termos de gerenciamento e recursos. Mas, em determinado momento, um usuário no THM UK pode precisar acessar um arquivo compartilhado em um dos servidores do MHT ASIA. Para que isso aconteça, os domínios organizados em árvores e florestas são unidos por relações de confiança.
+
+Em termos simples, ter uma relação de confiança entre domínios permite que você autorize um usuário do domínio THM UK a acessar recursos do domínio MHT EU.
+
+A relação de confiança mais simples que pode ser estabelecida é uma relação de confiança unidirecional. Em uma relação de confiança unidirecional, se o Domínio AAA confia no Domínio BBB, isso significa que um usuário no BBB pode ser autorizado a acessar recursos no AAA.
+
+A direção da relação de confiança unidirecional é contrária à direção de acesso.
+
+Relações de confiança bidirecionais também podem ser criadas para permitir que ambos os domínios autorizem mutuamente usuários um do outro. Por padrão, unir vários domínios em uma árvore ou floresta formará uma relação de confiança bidirecional.
+
+É importante observar que ter uma relação de confiança entre domínios não concede automaticamente acesso a todos os recursos em outros domínios. Uma vez estabelecida uma relação de confiança, você tem a chance de autorizar usuários em diferentes domínios, mas cabe a você decidir o que é realmente autorizado ou não.
