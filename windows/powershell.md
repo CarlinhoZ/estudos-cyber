@@ -37,8 +37,6 @@ Write-Output
 Qual é o comando para recuperar um exemplo de uso do cmdlet New-LocalUser?
 
 Get-Help New-LocalUser -examples
-
-Resposta correta
 ```
 
 # Navegando por diretórios
