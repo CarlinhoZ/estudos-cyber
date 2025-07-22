@@ -4,6 +4,7 @@
 
 # Microsoft Windows
 * [Documentação oficial da Microsoft](https://learn.microsoft.com/pt-br/)
+* [Powershell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4)
 
 # Ferramentas
 * [Snort](https://www.snort.org/documents)
