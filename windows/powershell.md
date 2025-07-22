@@ -13,6 +13,6 @@ Os cmdlets seguem uma convenção de nomenclatura consistente Verbo-Substantivo.
 * Get-Content: Recupera (get) o conteúdo de um arquivo e o exibe no console.
 * Set-Location: Altera (set) o diretório de trabalho atual.
 * Get-Command: Recupera (get) os comandos que podem ser usados.
-....* -CommandType "Function": Se quisermos exibir apenas os comandos disponíveis do tipo “function”.
+⋅⋅⋅⋅* -CommandType "Function": Se quisermos exibir apenas os comandos disponíveis do tipo “function”.
 * Get-Help: Ele fornece informações detalhadas sobre cmdlets, incluindo uso, parâmetros e exemplos.
 
