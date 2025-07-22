@@ -123,6 +123,60 @@ O ```Select-String``` busca padrões de texto em arquivos, semelhante ao ```grep
 
 Exemplo: ```Select-String -Path ".\captain-hat.txt" -Pattern "hat"```
 
+# Informações de sistema e rede
+O cmdlet ```Get-ComputerInfo``` recupera informações abrangentes do sistema, incluindo informações do sistema operacional, especificações de hardware, detalhes do BIOS, etc.. Ele fornece um instantâneo de toda a configuração do sistema em um único comando. Seu equivalente tradicional, ```systeminfo```, recupera apenas um pequeno conjunto dos mesmos detalhes.
+
+Essencial para gerenciar contas de usuários e entender a configuração de segurança da máquina, o ```Get-LocalUser``` lista todas as contas de usuários locais no sistema. A saída padrão exibe, para cada usuário, o nome de usuário, o status da conta e a descrição.
+
+```Get-NetIPConfiguration``` fornece informações detalhadas sobre as interfaces de rede no sistema, incluindo endereços IP, servidores DNS e configurações de gateway.
+
+Caso precisemos de detalhes específicos sobre os endereços IP atribuídos às interfaces de rede, o cmdlet ```Get-NetIPAddress``` mostrará detalhes de todos os endereços IP configurados no sistema, incluindo aqueles que não estão ativos no momento.
+
+# Análise de processos em tempo real
+O ```Get-Process``` fornece uma visão detalhada de todos os processos em execução, incluindo o uso de CPU e memória, tornando-se uma ferramenta poderosa para monitoramento e solução de problemas.
+
+Da mesma forma, o ```Get-Service``` permite a recuperação de informações sobre o status dos serviços na máquina, como quais serviços estão em execução, parados ou pausados. É amplamente utilizado na solução de problemas por administradores de sistema, mas também por analistas forenses que buscam serviços anômalos instalados no sistema.
+
+Para monitorar conexões de rede ativas, o ```Get-NetTCPConnection``` exibe as conexões TCP atuais, fornecendo insights sobre endpoints locais e remotos. Este cmdlet é particularmente útil durante uma tarefa de resposta a incidentes ou análise de malware, pois pode descobrir backdoors ocultos ou conexões estabelecidas com um servidor controlado por um invasor.
+
+Além disso, mencionaremos ```Get-FileHash``` como um cmdlet útil para gerar hashes de arquivos, o que é particularmente valioso em resposta a incidentes, detecção de ameaças e análise de malware, pois ajuda a verificar a integridade dos arquivos e detectar possíveis adulterações.
+
+> Pequeno desafio para reforçar o conhecimento
+```
+Um serviço vital foi instalado neste navio pirata para garantir que o capitão possa sempre navegar com segurança. Mas algo não está funcionando como esperado, e o capitão se pergunta o porquê. Investigando, eles finalmente descobrem a verdade: o serviço foi adulterado! O sujeito suspeito de antes modificou o nome de exibição do serviço para refletir seu próprio lema, o mesmo que ele colocou em sua descrição de usuário.
+
+Com essas informações e o conhecimento de PowerShell que você adquiriu até agora, você consegue encontrar o nome do serviço?
+
+```
+Inicialmente utilizei o ```Set-Location``` para a pasta do usuário p1r4t3, em busca de pistas, porém percebi que deveria buscar um serviço com o nome desse usuário.
+Foi aí que utilizei o ```Get-Service -Name "p1r4t3"``` e me retornou o serviço ```p1r4t3-s-compass```.
+
+# Scripting
+Scripting é o processo de escrever e executar uma série de comandos contidos em um arquivo de texto, conhecido como script, para automatizar tarefas que geralmente seriam executadas manualmente em um shell, como o PowerShell.
+
+Em termos simples, scripting é como dar a um computador uma lista de tarefas, onde cada linha do script é uma tarefa que o computador executará automaticamente. Isso economiza tempo, reduz a chance de erros e permite executar tarefas muito complexas ou tediosas para serem feitas manualmente. 
+
+* Para profissionais de Blue Team, como respondedores de incidentes, analistas de malware e caçadores de ameaças, os scripts do PowerShell podem automatizar diversas tarefas, incluindo análise de logs, detecção de anomalias e extração de indicadores de comprometimento (IOCs). Esses scripts também podem ser usados para realizar engenharia reversa de código malicioso (malware) ou automatizar a varredura de sistemas em busca de sinais de intrusão.
+
+* Para o Red Team, incluindo testadores de penetração e hackers éticos, os scripts do PowerShell podem automatizar tarefas como enumeração de sistemas, execução de comandos remotos e criação de scripts ofuscados para contornar defesas. Sua profunda integração com todos os tipos de sistemas o torna uma ferramenta poderosa para simular ataques e testar a resiliência dos sistemas contra ameaças do mundo real.
+
+* Mantendo-se no contexto da segurança cibernética, os administradores de sistemas se beneficiam dos scripts do PowerShell para automatizar verificações de integridade, gerenciar configurações de sistemas e proteger redes, especialmente em ambientes remotos ou de grande porte. Os scripts do PowerShell podem ser projetados para aplicar políticas de segurança, monitorar a integridade dos sistemas e responder automaticamente a incidentes de segurança, aprimorando assim a postura geral de segurança.
+
+O ```Invoke-Command``` é essencial para a execução de comandos em sistemas remotos, tornando-o fundamental para administradores de sistemas, engenheiros de segurança e testadores de penetração. O ```Invoke-Command``` permite o gerenciamento remoto eficiente e, combinado com scripts, a automação de tarefas em várias máquinas. Ele também pode ser usado para executar payloads ou comandos em sistemas alvo durante um ataque por testadores de penetração — ou mesmo por invasores.
+
+Utilizando o ```Get-Help Invoke-Command -examples```, nos retorna informações valiosas sobre seu funcionamento.
+
+> Exercício para fixação
+```
+Qual é a sintaxe para executar o comando Get-Service em um computador remoto chamado "RoyalFortune"? Suponha que você não precise fornecer credenciais para estabelecer a conexão.
+
+Invoke-Command -ComputerName RoyalFortune -ScriptBlock { Get-Service }
+```
+
+
+
+
+
 
 
 
