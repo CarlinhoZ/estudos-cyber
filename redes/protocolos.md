@@ -1,4 +1,4 @@
-# O que é HTTP e HTTPS?
+# [HTTP e HTTPS](/redes/portas.md)
 HTTP é o protocolo usado sempre que você acessa um site, desenvolvido por Tim Berners-Lee e sua equipe entre 1989 e 1991. HTTP é o conjunto de regras usado para comunicação com servidores web para a transmissão de dados de páginas web, sejam eles HTML, imagens, vídeos, etc.
 
 HTTPS é a versão segura do HTTP. Os dados HTTPS são criptografados, o que não apenas impede que as pessoas vejam os dados que você está recebendo e enviando, mas também garante que você está se comunicando com o servidor web correto e não com algo que o esteja imitando.
@@ -176,4 +176,49 @@ Os cookies podem ser usados para diversas finalidades, mas são mais comumente u
 
 É possível visualizar facilmente quais cookies seu navegador está enviando para um site usando as ferramentas do desenvolvedor em seu navegador. Se não tiver certeza de como acessar as ferramentas do desenvolvedor em seu navegador, clique no botão "Visualizar site" na parte superior desta tarefa para obter um guia prático.
 Depois de abrir as ferramentas do desenvolvedor, clique na aba "Rede". Essa aba mostrará uma lista de todos os recursos solicitados pelo seu navegador. Pode clicar em cada um para receber uma análise detalhada da solicitação e da resposta. Se o seu navegador enviou um cookie, você os verá na aba "Cookies" da solicitação.
+
+# FTP (File Transfer Protocol)
+O Protocolo de Transferência de Arquivos (FTP) é um protocolo projetado para auxiliar na transferência eficiente de arquivos entre sistemas diferentes e até mesmo incompatíveis. Ele suporta dois modos de transferência de arquivos: binário e ASCII (texto).
+
+Exemplos de comandos definidos pelo protocolo FTP:
+
+* USER é usado para inserir o nome de usuário
+* PASS é usado para inserir a senha
+* RETR (recuperar) é usado para baixar um arquivo do servidor FTP para o cliente.
+* STOR (armazenar) é usado para enviar um arquivo do cliente para o servidor FTP.
+O servidor FTP escuta na porta TCP 21 por padrão; a transferência de dados é realizada por meio de outra conexão do cliente para o servidor.
+
+# SMTP (Simple Mail Transfer Protocol)
+A analogia com o protocolo SMTP é quando você vai aos correios locais para enviar um pacote. Você cumprimenta o funcionário, informa para onde deseja enviar o pacote e fornece as informações do remetente antes de entregá-lo. Dependendo do país em que você estiver, poderá ser solicitado a mostrar seu documento de identidade. Este processo não é muito diferente de uma sessão SMTP.
+
+Vamos apresentar alguns dos comandos usados pelo seu cliente de e-mail ao transferir um e-mail para um servidor SMTP:
+
+* HELO ou EHLO inicia uma sessão SMTP
+* MAIL FROM especifica o endereço de e-mail do remetente
+* RCPT TO especifica o endereço de e-mail do destinatário
+* DATA indica que o cliente começará a enviar o conteúdo da mensagem de e-mail
+* . é enviado em uma linha isoladamente para indicar o fim da mensagem de e-mail
+
+# POP3 (Post Office Protocol 3)
+Você recebeu um e-mail e deseja baixá-lo para o seu cliente de e-mail local. O POP3 foi projetado para permitir que o cliente se comunique com um servidor de e-mail e recupere mensagens de e-mail.
+
+Por exemplo, um cliente de e-mail envia suas mensagens usando SMTP e as recupera usando POP3. SMTP é semelhante a entregar seu envelope ou pacote aos correios, e POP3 é semelhante a verificar sua caixa de correio local em busca de novas cartas ou pacotes.
+
+Alguns comandos POP3 comuns são:
+
+* USER <nome de usuário> identifica o usuário
+* PASS <senha> fornece a senha do usuário
+* STAT solicita o número de mensagens e o tamanho total
+* LIST lista todas as mensagens e seus tamanhos
+* RETR <número_da_mensagem> recupera a mensagem especificada
+* DELE <número_da_mensagem> marca uma mensagem para exclusão
+* QUIT encerra a sessão POP3 aplicando alterações, como exclusões
+
+
+
+
+
+
+
+
 
