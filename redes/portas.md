@@ -1,4 +1,4 @@
-## Portas de rede
+## [Portas de rede](https://pt.wikipedia.org/wiki/Lista_de_portas_dos_protocolos_TCP_e_UDP)
 Quando uma conexão é estabelecida, quaisquer dados enviados ou recebidos por um dispositivo serão enviados por essas portas. Em computação, portas são um valor numérico entre 0 e 65535.
 Como as portas podem variar de 0 a 65535, rapidamente corre-se o risco de perder o controle de qual aplicativo está usando qual porta, por isso associamos aplicativos, softwares e comportamentos a um conjunto padrão de regras.
 Por exemplo, ao impor que todos os dados do navegador web sejam enviados pela porta 80, os desenvolvedores de software podem projetar um navegador web como o Google Chrome ou o Firefox para interpretar os dados da mesma forma.
