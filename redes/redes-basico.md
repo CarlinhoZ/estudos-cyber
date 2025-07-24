@@ -8,6 +8,13 @@ Um firewall está configurado para permitir qualquer comunicação de e para o e
 
 Utiliza o protocolo ICMP (Internet Control Message Protocol) para determinar o desempenho de conexão entre dispositivos, enviando um pacote de eco e retornando a resposta.
 
+## NAT
+A ideia por trás da NAT reside em usar um endereço IP público para fornecer acesso à internet a vários endereços IP privados. Em outras palavras, se você estiver conectando uma empresa com vinte computadores, poderá fornecer acesso à internet a todos os vinte computadores usando um único endereço IP público em vez de vinte endereços IP públicos. (Observação: Tecnicamente falando, o número de endereços IP é sempre expresso como uma potência de dois. Para ser tecnicamente preciso, com a NAT, você reserva dois endereços IP públicos em vez de trinta e dois. Consequentemente, você teria economizado trinta endereços IP públicos.)
+
+Ao contrário do roteamento, que é a maneira natural de rotear pacotes para o host de destino, os roteadores que suportam NAT precisam encontrar uma maneira de rastrear as conexões em andamento. Consequentemente, roteadores com suporte a NAT mantêm uma tabela que traduz endereços de rede entre redes internas e externas. Geralmente, a rede interna usaria um intervalo de endereços IP privados, enquanto a rede externa usaria um endereço IP público.
+
+Um bom exemplo, vários dispositivos acessam a Internet por meio de um roteador com suporte a NAT. O roteador mantém uma tabela que mapeia o endereço IP interno e o número da porta com seu endereço IP externo e número da porta. Por exemplo, um laptop pode estabelecer uma conexão com algum servidor web. Da perspectiva do laptop, a conexão é iniciada a partir de seu endereço IP 192.168.0.129 a partir da porta de origem TCP 15401; no entanto, o servidor web verá essa mesma conexão como sendo estabelecida a partir de 212.3.4.5 e da porta TCP 19273. O roteador realiza essa tradução de endereços perfeitamente.
+
 ## Topologias
 ### Topologia Estrela
 Os dispositivos estão conectados em um dispositivo central (geralmente um switch). Como é uma rede altamente escavável, é uma das mais utilizadas atualmente, apesar do custo elevado, comparado à outras topologias, pois permite adicionar novos dispositivos com mais facilidade. O malefício desta topologia está em quanto mais escalar, mais manutenção será necessária para manter em ordem, além de que se o dispositivo central falhar, o restante dos dispositivos conectados não terão mais acesso, apesar desses dispositivos centrais serem geralmente mais robustos.
@@ -47,6 +54,14 @@ A questão é: qual caminho será seguido? Protocolos diferentes decidirão qual
 * Qual caminho é o mais confiável?
 
 * Qual caminho tem o meio mais rápido (por exemplo, cobre ou fibra)?
+
+### Roteamento
+Os algoritmos de roteamento estão além do escopo desta sala; no entanto, descreveremos brevemente alguns protocolos de roteamento para que você se familiarize com seus nomes:
+
+* OSPF (Open Shortest Path First): OSPF é um protocolo de roteamento que permite que roteadores compartilhem informações sobre a topologia da rede e calculem os caminhos mais eficientes para a transmissão de dados. Ele faz isso por meio da troca de atualizações entre roteadores sobre o estado de seus links e redes conectados. Dessa forma, cada roteador tem um mapa completo da rede e pode determinar as melhores rotas para alcançar qualquer destino.
+* EIGRP (Enhanced Interior Gateway Routing Protocol): EIGRP é um protocolo de roteamento proprietário da Cisco que combina aspectos de diferentes algoritmos de roteamento. Ele permite que roteadores compartilhem informações sobre as redes que podem alcançar e o custo (como largura de banda ou atraso) associado a essas rotas. Os roteadores então usam essas informações para escolher os caminhos mais eficientes para a transmissão de dados.
+* BGP (Border Gateway Protocol): BGP é o principal protocolo de roteamento usado na Internet. Ele permite que diferentes redes (como as de Provedores de Serviços de Internet) troquem informações de roteamento e estabeleçam caminhos para que os dados trafeguem entre essas redes. O BGP ajuda a garantir que os dados possam ser roteados com eficiência pela internet, mesmo atravessando várias redes.
+* RIP (Routing Information Protocol): O RIP é um protocolo de roteamento simples, frequentemente usado em redes pequenas. Roteadores que executam o RIP compartilham informações sobre as redes que podem alcançar e o número de saltos (roteadores) necessários para chegar lá. Como resultado, cada roteador cria uma tabela de roteamento com base nessas informações, escolhendo as rotas com o menor número de saltos para alcançar cada destino.
 
 ## ARP
 O Protocolo de Resolução de Endereços (ARP) é responsável por encontrar o endereço MAC (hardware) relacionado a um endereço IP específico. Ele funciona transmitindo uma consulta ARP: "Quem tem este endereço IP?". E a resposta é no formato: "O endereço IP está neste endereço MAC".
