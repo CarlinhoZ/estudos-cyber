@@ -1,7 +1,7 @@
 # [HTTP e HTTPS](/redes/portas.md)
 HTTP é o protocolo usado sempre que você acessa um site, desenvolvido por Tim Berners-Lee e sua equipe entre 1989 e 1991. HTTP é o conjunto de regras usado para comunicação com servidores web para a transmissão de dados de páginas web, sejam eles HTML, imagens, vídeos, etc.
 
-HTTPS é a versão segura do HTTP. Os dados HTTPS são criptografados, o que não apenas impede que as pessoas vejam os dados que você está recebendo e enviando, mas também garante que você está se comunicando com o servidor web correto e não com algo que o esteja imitando.
+HTTPS é a versão segura do HTTP. Os dados HTTPS são criptografados, o que não apenas impede que as pessoas vejam os dados que você está recebendo e enviando, mas também garante que você está se comunicando com o servidor web correto e não com algo que o esteja imitando. HTTPS significa Hypertext Transfer Protocol Secure. É basicamente HTTP sobre TLS.
 
 Ao acessar um site, seu navegador precisa fazer solicitações a um servidor web para obter recursos como HTML e imagens, além de baixar as respostas. Antes disso, você precisa informar ao navegador especificamente como e onde acessar esses recursos. É aqui que as URLs ajudam.
 
@@ -227,6 +227,40 @@ Os comandos do protocolo IMAP são mais complexos do que os comandos do protocol
 * MOVE <conjunto_de_sequências> <caixa_de_correio> move as mensagens especificadas para outra caixa de correio
 * COPY <conjunto_de_sequências> <nome_do_item_de_dados> copia as mensagens especificadas para outra caixa de correio
 * LOGOUT desconecta
+
+# TLS (Transfer Layer Protocol)
+Assim como o SSL, seu antecessor, o TLS é um protocolo criptográfico que opera na camada de transporte do modelo OSI. Ele permite a comunicação segura entre um cliente e um servidor em uma rede insegura. Por segurança, referimo-nos à confidencialidade e à integridade; o TLS garante que ninguém possa ler ou modificar os dados trocados. Sem o TLS, não poderíamos usar a internet para muitas aplicações que agora fazem parte da nossa rotina diária.
+
+Hoje em dia, dezenas de protocolos receberam atualizações de segurança com a simples adição do TLS. Exemplos incluem HTTP, DNS, MQTT e SIP, que se tornaram HTTPS, DoT (DNS sobre TLS), MQTTS e SIPS, onde o "S" anexado significa Seguro devido ao uso de SSL/TLS.
+
+O primeiro passo para cada servidor (ou cliente) que precisa se identificar é obter um certificado TLS assinado. Geralmente, o administrador do servidor cria uma Solicitação de Assinatura de Certificado (CSR) e a envia a uma Autoridade Certificadora (AC); a AC verifica a CSR e emite um certificado digital. Uma vez recebido o certificado (assinado), ele pode ser usado para identificar o servidor (ou o cliente) para outros, que podem confirmar a validade da assinatura. Para que um host confirme a validade de um certificado assinado, os certificados das autoridades de assinatura precisam estar instalados no host. No mundo não digital, isso é semelhante a reconhecer os carimbos de várias autoridades. Existe um site para criar um certificado assinado totalmente gratuito chamado [Let's Encrypt](https://letsencrypt.org/).
+
+# SSH (Secure Shell)
+Embora seja muito conveniente efetuar login e administrar sistemas remotos utilizando telnet, é arriscado quando todo o tráfego é enviado em texto não criptografado. É fácil para qualquer pessoa que monitore o tráfego de rede obter suas credenciais de login depois de usar o telnet. Esse problema precisava de uma solução. Tatu Ylönen desenvolveu o protocolo Secure Shell (SSH) e lançou o SSH-1 em 1995 como freeware.
+
+O OpenSSH oferece vários benefícios. Listaremos alguns pontos-chave:
+
+* Autenticação segura: Além da autenticação baseada em senha, o SSH suporta chave pública e autenticação de dois fatores.
+* Confidencialidade: O OpenSSH fornece criptografia de ponta a ponta, protegendo contra espionagem. Além disso, ele notifica você sobre novas chaves de servidor para proteção contra ataques do tipo "man-in-the-middle".
+* Integridade: Além de proteger a confidencialidade dos dados trocados, a criptografia também protege a integridade do tráfego.
+* Tunelamento: O SSH pode criar um "túnel" seguro para rotear outros protocolos através do SSH. Essa configuração leva a uma conexão semelhante a uma VPN.
+* Encaminhamento X11: Se você se conectar a um sistema do tipo Unix com uma interface gráfica de usuário, o SSH permite que você use o aplicativo gráfico pela rede.
+
+Você deve executar o comando ssh username@hostname para se conectar a um servidor SSH. Se o nome de usuário for o mesmo que o seu nome de usuário logado, você precisará apenas do ssh hostname. Em seguida, será solicitada uma senha; no entanto, se a autenticação por chave pública for usada, você será logado imediatamente.
+
+# SFTP e FTPS
+SFTP (SSH File Transfer Protocol) e permite a transferência segura de arquivos. Faz parte do conjunto de protocolos SSH e compartilha a mesma porta, 22. Se habilitado na configuração do servidor OpenSSH, você pode se conectar usando um comando como ```sftp username@hostname```. Após o login, você pode executar comandos como ```get filename``` e ```put filename``` para baixar e enviar arquivos, respectivamente. De modo geral, os comandos SFTP são do tipo Unix e podem diferir dos comandos FTP.
+
+SFTP não deve ser confundido com FTPS. FTPS (File Transfer Protocol Secure) é protegido usando TLS, assim como HTTPS. Enquanto o FTP usa a porta 21, o FTPS geralmente usa a porta 990. Ele requer configuração de certificado e pode ser complicado de permitir em firewalls rigorosos, pois usa conexões separadas para controle e transferência de dados.
+
+Configurar um servidor SFTP é tão fácil quanto habilitar uma opção no servidor OpenSSH. Assim como HTTPS, SMTPS, POP3S, IMAPS e outros protocolos que dependem do TLS para segurança, o FTPS requer um certificado TLS adequado para ser executado com segurança.
+
+
+
+
+
+
+
 
 
 
