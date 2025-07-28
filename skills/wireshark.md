@@ -100,15 +100,21 @@ O Wireshark lista os pacotes conforme são capturados, portanto, investigar o fl
 
 O Wireshark também detecta estados específicos de protocolos para ajudar analistas a identificar facilmente possíveis anomalias e problemas. Observe que estas são apenas sugestões e sempre há a possibilidade de haver falsos positivos/negativos. As Informações de Especialistas podem fornecer um grupo de categorias em três níveis de gravidade diferentes.
 
-Cor           Informação
-* Azul        Informações sobre o fluxo de trabalho normal.
-* Ciano       Eventos notáveis, como códigos de erro do aplicativo.
-* Amarelo     Avisos como códigos de erro incomuns ou declarações de problemas.
-* Vermelho    Problemas como pacotes malformados.
+Cor e Informação
+* Azul = Informações sobre o fluxo de trabalho normal.
+* Ciano = Eventos notáveis, como códigos de erro do aplicativo.
+* Amarelo = Avisos como códigos de erro incomuns ou declarações de problemas.
+* Vermelho = Problemas como pacotes malformados.
 
+<img width="618" height="204" alt="image" src="https://github.com/user-attachments/assets/391f4146-b7a1-4936-bf09-ebcc8eac8eb8" />
 
+Grupo e Informações
+Checksum = Erros de soma de verificação.
+Deprecated = Uso de protocolo obsoleto.
+Comment = Detecção de comentário de pacote.
+Malformed = Detecção de pacote malformado.
 
-
+<img width="142" height="155" alt="image" src="https://github.com/user-attachments/assets/11e524cb-e2a1-444f-a93a-40a2022a5113" />
 
 
 
