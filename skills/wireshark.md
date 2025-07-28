@@ -109,10 +109,10 @@ Cor e Informação
 <img width="618" height="204" alt="image" src="https://github.com/user-attachments/assets/391f4146-b7a1-4936-bf09-ebcc8eac8eb8" />
 
 Grupo e Informações
-Checksum = Erros de soma de verificação.
-Deprecated = Uso de protocolo obsoleto.
-Comment = Detecção de comentário de pacote.
-Malformed = Detecção de pacote malformado.
+* Checksum = Erros de soma de verificação.
+* Deprecated = Uso de protocolo obsoleto.
+* Comment = Detecção de comentário de pacote.
+* Malformed = Detecção de pacote malformado.
 
 <img width="142" height="155" alt="image" src="https://github.com/user-attachments/assets/11e524cb-e2a1-444f-a93a-40a2022a5113" />
 
