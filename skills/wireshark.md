@@ -116,29 +116,49 @@ Grupo e Informações
 
 <img width="142" height="155" alt="image" src="https://github.com/user-attachments/assets/11e524cb-e2a1-444f-a93a-40a2022a5113" />
 
+# Filtragem de pacotes
+O Wireshark possui um poderoso mecanismo de filtragem que ajuda os analistas a restringir o tráfego e focar no evento de interesse. O Wireshark possui dois tipos de abordagens de filtragem:
+* filtros de captura
+* filtros de exibição
 
+Os filtros de captura são usados para "capturar" apenas os pacotes válidos para o filtro utilizado. Os filtros de exibição são usados para "visualizar" os pacotes válidos para o filtro utilizado.
 
+Filtros são consultas específicas projetadas para protocolos disponíveis na referência oficial de protocolos do Wireshark. Embora os filtros sejam apenas a opção para investigar o evento de interesse, existem duas maneiras diferentes de filtrar o tráfego e remover o ruído do arquivo de captura. A primeira usa consultas e a segunda usa o menu do botão direito. O Wireshark oferece uma interface gráfica poderosa e há uma regra de ouro para analistas que não querem escrever consultas para tarefas básicas: "Se você pode clicar em algo, você pode filtrar e copiar".
 
+## Aplicar como Filtro
+Esta é a maneira mais básica de filtrar tráfego. Ao investigar um arquivo de captura, você pode usar o botão direito do mouse ou pode clicar no campo que deseja filtrar e usar o menu "Analyze --> Apply as Filter" para filtrar o valor específico. Após aplicar o filtro, o Wireshark gerará a consulta de filtro necessária, aplicará a consulta, exibirá os pacotes de acordo com sua escolha e ocultará os pacotes não selecionados do painel de lista de pacotes. Observe que o número total de pacotes e os pacotes exibidos são sempre exibidos na barra de status.
 
+<img width="1463" height="549" alt="image" src="https://github.com/user-attachments/assets/fabd982d-a58e-4b87-9b5d-fa0a0d9e7ff7" />
 
+## Filtro de Conversa
+Ao usar a opção "Apply as Filter", você filtrará apenas uma entidade do pacote. Essa opção é uma boa maneira de investigar um valor específico nos pacotes. No entanto, suponha que você queira investigar um número de pacote específico e todos os pacotes vinculados, concentrando-se em endereços IP e números de porta. Nesse caso, a opção "Conversation Filter" ajuda a visualizar apenas os pacotes relacionados e ocultar facilmente o restante. Você pode usar o botão direito do mouse ou o menu "Analyse --> Conversation Filter" para filtrar conversas.
 
+<img width="1459" height="616" alt="image" src="https://github.com/user-attachments/assets/51431743-f8c0-4cf5-bc5c-bd7d254754e0" />
 
+## Colorir Conversa
+Esta opção é semelhante ao "Conversation Filter", com uma diferença: destaca os pacotes vinculados sem aplicar um filtro de exibição e diminui o número de pacotes visualizados. Esta opção funciona em conjunto com a opção "Colouring Rules" e altera as cores dos pacotes sem considerar a regra de cor aplicada anteriormente. Você pode usar o botão direito do mouse ou o menu "View --> Colourise Conversation" para colorir um pacote vinculado com um único clique. Observe que você pode usar o menu "View --> Colourise Conversation --> Reset Colourisation" para desfazer esta operação.
 
+<img width="1440" height="1200" alt="image" src="https://github.com/user-attachments/assets/464a2726-621c-495e-bcb1-7f2b15e1d0a4" />
 
+## Preparar como Filtro
+Semelhante a "Apply as Filter", esta opção ajuda os analistas a criar filtros de exibição. No entanto, diferentemente do anterior, este modelo não aplica os filtros após a escolha. Ele adiciona a consulta necessária ao painel e aguarda o comando de execução (enter) ou outra opção de filtragem escolhida usando ".. e/ou.." no menu do botão direito.
 
+<img width="1459" height="1087" alt="image" src="https://github.com/user-attachments/assets/0ebc6b9b-183c-46cb-889a-ad3047c5d978" />
 
+## Aplicar como Coluna
+Por padrão, o painel da lista de pacotes fornece informações básicas sobre cada pacote. Você pode usar o botão direito do mouse ou o menu "Analyze --> Apply as Column" para adicionar colunas ao painel da lista de pacotes. Após clicar em um valor e aplicá-lo como coluna, ele ficará visível no painel da lista de pacotes. Esta função ajuda os analistas a examinar a aparência de um valor/campo específico nos pacotes disponíveis no arquivo de captura. Você pode ativar/desativar as colunas exibidas no painel da lista de pacotes clicando na parte superior do painel.
 
+<img width="1463" height="546" alt="image" src="https://github.com/user-attachments/assets/9a2604b5-1263-44d0-a52c-a2a5cb3a264a" />
 
+## Acompanhar o Fluxo
 
+O Wireshark exibe tudo em tamanho de porção de pacote. No entanto, é possível reconstruir os fluxos e visualizar o tráfego bruto conforme apresentado no nível do aplicativo. Seguindo o protocolo, os fluxos ajudam os analistas a recriar os dados no nível do aplicativo e a entender o evento de interesse. Também é possível visualizar os dados do protocolo não criptografados, como nomes de usuário, senhas e outros dados transferidos.
 
+Você pode usar o "menu do botão direito" ou o menu "Analisar --> Acompanhar Fluxo TCP/UDP/HTTP" para acompanhar os fluxos de tráfego. Os fluxos são exibidos em uma caixa de diálogo separada; os pacotes originados do servidor são destacados em azul e os originados do cliente são destacados em vermelho.
 
+<img width="1463" height="565" alt="image" src="https://github.com/user-attachments/assets/08e0f584-86aa-41bf-a47f-bcf61693d3ff" />
 
-
-
-
-
-
-
+Ao seguir um fluxo, o Wireshark cria e aplica automaticamente o filtro necessário para visualizar o fluxo específico. Lembre-se: após a aplicação de um filtro, o número de pacotes visualizados muda. Você precisará usar o "botão X" localizado no canto superior direito da barra de filtros de exibição para remover o filtro de exibição e visualizar todos os pacotes disponíveis no arquivo de captura.
 
 
 
