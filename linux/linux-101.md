@@ -1,5 +1,14 @@
 # Principais Comandos
 
+### Pipe
+Um pipe (representado pelo caractere "|") é um mecanismo que permite conectar a saída de um comando à entrada de outro, criando uma sequência de comandos onde a saída de um se torna a entrada do próximo. Isso permite que você crie comandos complexos combinando vários comandos menores, de forma eficiente e organizada.
+
+Exemplos:
+
+* ls -l | less: Lista os arquivos do diretório atual e exibe a saída paginada no less. 
+* cat file.txt | grep "texto": Lê o conteúdo de file.txt e filtra as linhas que contêm a palavra "texto". 
+* ps aux | grep "httpd" | wc -l: Lista todos os processos em execução, filtra aqueles que contêm "httpd" e conta o número de linhas resultantes, mostrando quantos processos httpd estão ativos. 
+
 ### echo
 Saia qualquer texto que fornecer
 
