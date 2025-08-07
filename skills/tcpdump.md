@@ -1,6 +1,4 @@
 # Comandos
-
-Especificar a Interface de Rede
 A primeira coisa a decidir é qual interface de rede escutar usando ```-i INTERFACE```. Você pode optar por escutar em todas as interfaces disponíveis usando ```-i any```; como alternativa, você pode especificar uma interface na qual deseja escutar, como ```-i eth0```.
 
 Um comando como ```ip address show (ou simplesmente ip a s)``` listaria as interfaces de rede disponíveis.
