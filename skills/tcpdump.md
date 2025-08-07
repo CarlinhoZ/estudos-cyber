@@ -43,7 +43,7 @@ Se quiser limitar os pacotes àqueles de um endereço IP de origem ou nome de ho
 Se desejar capturar todo o tráfego DNS, você pode limitar os pacotes capturados àqueles na porta 53. Lembre-se de que o DNS usa as portas UDP e TCP 53 por padrão. No exemplo a seguir, podemos ver todas as consultas DNS lidas pela nossa placa de rede. O terminal abaixo mostra duas consultas DNS: a primeira consulta solicita o endereço IPv4 usado por example.org, enquanto a segunda solicita o endereço IPv6 associado a example.org.
 
 ## Filtragem por Protocolo
-O último tipo de filtragem que abordaremos é a filtragem por protocolo. Você pode limitar a captura de pacotes a um protocolo específico; exemplos incluem: ip, ip6, udp, tcp e icmp. No exemplo abaixo, limitamos nossa captura de pacotes a pacotes ICMP. Podemos ver uma solicitação e resposta de eco ICMP, o que é uma possível indicação de que alguém está executando o comando ping. Há também um tempo ICMP excedido; isso pode ser devido à execução do comando traceroute.
+O último tipo de filtragem que abordaremos é a filtragem por protocolo. Você pode limitar a captura de pacotes a um protocolo específico; exemplos incluem: ip, ip6, udp, tcp e icmp. 
 
 ## Operadores Lógicos
 Três operadores lógicos que podem ser úteis:
