@@ -44,14 +44,27 @@ Se quiser limitar os pacotes àqueles de um endereço IP de origem ou nome de ho
 ## Filtrando por Porta
 Se desejar capturar todo o tráfego DNS, você pode limitar os pacotes capturados àqueles na porta 53. Lembre-se de que o DNS usa as portas UDP e TCP 53 por padrão. No exemplo a seguir, podemos ver todas as consultas DNS lidas pela nossa placa de rede. O terminal abaixo mostra duas consultas DNS: a primeira consulta solicita o endereço IPv4 usado por example.org, enquanto a segunda solicita o endereço IPv6 associado a example.org.
 
-No exemplo acima, capturamos todos os pacotes enviados de ou para uma porta específica. Você pode limitar os pacotes àqueles de uma porta de origem específica ou de uma porta de destino específica usando src port PORT_NUMBER e dst port PORT_NUMBER, respectivamente.
-
 ## Filtragem por Protocolo
 O último tipo de filtragem que abordaremos é a filtragem por protocolo. Você pode limitar a captura de pacotes a um protocolo específico; exemplos incluem: ip, ip6, udp, tcp e icmp. No exemplo abaixo, limitamos nossa captura de pacotes a pacotes ICMP. Podemos ver uma solicitação e resposta de eco ICMP, o que é uma possível indicação de que alguém está executando o comando ping. Há também um tempo ICMP excedido; isso pode ser devido à execução do comando traceroute.
 
+## Operadores Lógicos
+Três operadores lógicos que podem ser úteis:
 
+* and: Captura pacotes onde ambas as condições são verdadeiras. Por exemplo, ```tcpdump host 1.1.1.1 and tcp``` captura tráfego tcp com o host 1.1.1.1.
+* or: Captura pacotes quando qualquer uma das condições é verdadeira. Por exemplo, ```tcpdump udp or icmp``` captura tráfego UDP ou ICMP.
+* not: Captura pacotes quando a condição não é verdadeira. Por exemplo, ```tcpdump not tcp``` captura todos os pacotes, exceto segmentos TCP; esperamos encontrar pacotes UDP, ICMP e ARP entre os resultados.
 
+## Cheat Sheet
+* tcpdump host IP or tcpdump host HOSTNAME:	Filtra pacotes por IP ou hostname
+* tcpdump src host IP or: Filtra pacotes de um host origem
+* tcpdump dst host IP:	Filtra pacotes de um host destino
+* tcpdump port PORTA:	Filtra pacotes por uma porta
+* tcpdump src port PORTA:	Filtra pacotes por uma porta de origem
+* tcpdump dst port PORTA:	Filtra pacotes por uma porta de destino
+* tcpdump PROTOCOLO:	Filtra pacotes por protocolo
 
-
-
+## Exemplos
+```tcpdump -i any tcp port 22``` escuta em todas as interfaces e captura pacotes tcp de ou para a porta 22, ou seja, tráfego SSH.
+```tcpdump -i wlo1 udp port 123``` escuta na placa de rede Wi-Fi e filtra o tráfego udp para a porta 123, o Protocolo de Tempo de Rede (NTP).
+```tcpdump -i eth0 host example.com and tcp port 443 -w https.pcap``` escutará na eth0, a interface Ethernet com fio, e filtrará o tráfego trocado com example.com que usa tcp e a porta 443. Em outras palavras, este comando está filtrando o tráfego HTTPS relacionado a example.com.
 
