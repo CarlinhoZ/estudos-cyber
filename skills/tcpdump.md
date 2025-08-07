@@ -66,3 +66,28 @@ Três operadores lógicos que podem ser úteis:
 ```tcpdump -i wlo1 udp port 123``` escuta na placa de rede Wi-Fi e filtra o tráfego udp para a porta 123, o Protocolo de Tempo de Rede (NTP).
 ```tcpdump -i eth0 host example.com and tcp port 443 -w https.pcap``` escutará na eth0, a interface Ethernet com fio, e filtrará o tráfego trocado com example.com que usa tcp e a porta 443. Em outras palavras, este comando está filtrando o tráfego HTTPS relacionado a example.com.
 
+## Exercícios de fortalecimento de conhecimento
+* P: Quantos pacotes em traffic.pcap usam o protocolo ICMP?
+* R: 26
+
+```Utilizei o comando tcpdump icmp -r traffic.pcap```
+
+* P: Qual é o endereço IP do host que solicitou o endereço MAC 192.168.124.137?
+* R: 192.168.124.148
+
+```Utilizei um ARP, pelo comando tcpdump arp -r traffic.pcap```
+
+* P: Qual nome de host (subdomínio) aparece na primeira consulta DNS?
+* R: mirrors.rockylinux.org
+
+```
+Utilizei a busca do DNS pela porta padrão (53).
+O comando utilizado foi tcpdump -r traffic.pcap port 53
+```
+
+
+
+
+
+
+
