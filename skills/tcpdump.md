@@ -85,6 +85,56 @@ Utilizei a busca do DNS pela porta padrão (53).
 O comando utilizado foi tcpdump -r traffic.pcap port 53
 ```
 
+# Filtragens mais avançadas 
+Existem muitas outras maneiras de filtrar pacotes. Afinal, em qualquer situação da vida real, precisaríamos filtrar milhares ou até milhões de pacotes. É indispensável conseguir expressar exatamente os pacotes a serem exibidos. Por exemplo, podemos limitar os pacotes exibidos àqueles menores ou maiores que um determinado comprimento:
+
+* greater COMPRIMENTO: Filtra pacotes com comprimento maior ou igual ao comprimento especificado
+* less COMPRIMENTO: Filtra pacotes com comprimento menor ou igual ao comprimento especificado
+
+# Bytes de Cabeçalho
+Usando o pcap-filter, o Tcpdump permite que você se refira ao conteúdo de qualquer byte no cabeçalho usando a seguinte sintaxe proto[expr:size], onde:
+
+* proto se refere ao protocolo. Por exemplo, arp, ether, icmp, ip, ip6, tcp e udp se referem a ARP, Ethernet, ICMP, IPv4, IPv6, TCP e UDP, respectivamente.
+* expr indica o deslocamento do byte, onde 0 se refere ao primeiro byte.
+* size indica o número de bytes que nos interessa, que pode ser um, dois ou quatro. É opcional e é um por padrão.
+
+* ether[0] & 1 != 0 pega o primeiro byte do cabeçalho Ethernet e o número decimal 1 (ou seja, 0000 0001 em binário) e aplica o & (a operação binária And). Retornará verdadeiro se o resultado for diferente do número 0 (ou seja, 0000 0000). O objetivo deste filtro é mostrar os pacotes enviados para um endereço multicast. Um endereço Ethernet multicast é um endereço específico que identifica um grupo de dispositivos destinados a receber os mesmos dados.
+* ip[0] & 0xf != 5 pega o primeiro byte do cabeçalho IP e o compara com o número hexadecimal F (ou seja, 0000 1111 em binário). Retornará verdadeiro se o resultado for diferente do número (decimal) 5 (ou seja, 0000 0101 em binário). O objetivo deste filtro é capturar todos os pacotes IP com opções.
+
+Você pode usar tcp[tcpflags] para se referir ao campo de sinalizadores TCP. Os seguintes sinalizadores TCP estão disponíveis para comparação:
+
+* tcp-syn TCP SYN (Sincronizar)
+* tcp-ack TCP ACK (Confirmar)
+* tcp-fin TCP FIN (Concluir)
+* tcp-rst TCP RST (Redefinir)
+* tcp-push TCP Push
+
+Com base no exposto acima, podemos escrever:
+
+* tcpdump "tcp[tcpflags] == tcp-syn" para capturar pacotes TCP com apenas o sinalizador SYN (Sincronizar) definido, enquanto todos os outros sinalizadores estão desativados.
+* tcpdump "tcp[tcpflags] & tcp-syn != 0" para capturar pacotes TCP com pelo menos o sinalizador SYN (Sincronizar) definido.
+* tcpdump "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0" para capturar pacotes TCP com pelo menos os sinalizadores SYN (Sincronizar) ou ACK (Confirmar) definidos.
+
+# Exercícios de fixação de conhecimento
+P: Quantos pacotes têm apenas o sinalizador RST?
+R: 57
+
+```tcpdump -r traffic.pcap 'tcp[tcpflags] == tcp-rst' | wc -l```
+
+P: Qual é o endereço IP do host que enviou pacotes maiores que 15000 bytes?
+R: 185.117.80.53
+
+```tcpdump -r traffic.pcap 'greater 15000' -n```
+
+# Amostragem de pacotes
+
+* -q: Saída rápida; imprime informações resumidas do pacote
+* -e: Imprime o cabeçalho em nível de link
+* -A: Exibe os dados do pacote em ASCII
+* -xx: Exibe os dados do pacote em formato hexadecimal, conhecido como hexadecimal
+* -X: Exibe os cabeçalhos e dados do pacote em hexadecimal e ASCII
+
+
 
 
 
