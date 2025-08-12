@@ -135,6 +135,46 @@ Secure Shell (SSH) refere-se a um protocolo de rede criptográfico usado na comu
 
 Para acessar um servidor, por exemplo, em um terminal, utilize o comando ```ssh usuario@IP``` Se estiver correto, o terminal irá requisitar a senha deste usuário.
 
+## Autenticação ao servidor 
+<img width="696" height="202" alt="image" src="https://github.com/user-attachments/assets/b7d316b9-a9a8-40cd-a91c-bd8b84329585" />
+
+Na interação acima, o cliente SSH confirma se reconhecemos a "fingerprint" da chave pública do servidor. ED25519 é o algoritmo de chave pública usado para geração e verificação de assinatura digital neste exemplo. Nosso cliente SSH não reconheceu essa chave e está nos pedindo para confirmar se queremos continuar com a conexão. Este aviso ocorre porque um ataque do tipo "man-in-the-middle" é provável; um servidor malicioso pode ter interceptado a conexão e respondido, fingindo ser o servidor alvo.
+
+Neste caso, o usuário deve autenticar o servidor, ou seja, confirmar a identidade do servidor verificando a assinatura da chave pública. Assim que você responder "yes", o cliente SSH registrará essa assinatura da chave pública para este host. No futuro, ele se conectará silenciosamente, a menos que este host responda com uma chave pública diferente.
+
+## Autenticando o Cliente
+Agora que confirmamos que estamos "falando" com o servidor correto, precisamos nos identificar e nos autenticar. Em muitos casos, os usuários SSH são autenticados usando nomes de usuário e senhas, como se estivessem logando em uma máquina física. No entanto, considerando os problemas inerentes às senhas, isso não se enquadra nas melhores práticas de segurança.
+
+Em algum momento, certamente encontraremos uma máquina com SSH configurado com autenticação por chave. Essa autenticação usa chaves públicas e privadas para provar que o cliente é um usuário válido e autorizado no servidor. Por padrão, as chaves SSH são ```chaves RSA```. Você pode escolher qual algoritmo gerar e adicionar uma senha para criptografar a chave SSH.
+
+```ssh-keygen``` é o programa normalmente usado para gerar pares de chaves. Ele suporta vários algoritmos.
+
+### Nomes comuns de chaves criptografadas
+* DSA (Algoritmo de Assinatura Digital): é um algoritmo de criptografia de chave pública projetado especificamente para assinaturas digitais.
+* ECDSA (Algoritmo de Assinatura Digital de Curva Elíptica): é uma variante do DSA que utiliza criptografia de curva elíptica para fornecer tamanhos de chave menores para segurança equivalente.
+* ECDSA-SK (ECDSA com Chave de Segurança): é uma extensão do ECDSA. Ele incorpora chaves de segurança baseadas em hardware para proteção aprimorada de chaves privadas.
+* ED25519: é um sistema de assinatura de chave pública que utiliza o EdDSA (Algoritmo de Assinatura Digital de Curva de Edwards) com o Curve25519.
+* ED25519-SK (Ed25519 com Chave de Segurança): é uma variante do Ed25519. Semelhante ao ECDSA-SK, ele utiliza uma chave de segurança baseada em hardware para proteção aprimorada de chaves privadas.
+
+<img width="543" height="366" alt="image" src="https://github.com/user-attachments/assets/0a1fe256-3c1f-4735-9c47-5d3a6ff8279a" />
+
+## Chaves Privadas SSH
+Devemos tratar chaves privadas SSH como senhas. Nunca podemos compartilhar em hipótese alguma; elas são chamadas de chaves privadas por um motivo. Alguém com sua chave privada pode efetuar login em servidores que a aceitam, ou seja, incluí-la entre as chaves autorizadas, a menos que a chave esteja criptografada com uma senha.
+
+É muito importante mencionar que a senha usada para descriptografar a chave privada não o identifica para o servidor; ela apenas descriptografa a chave privada SSH. A senha nunca é transmitida e nunca sai do seu sistema.
+
+Usando ferramentas como o John the Ripper, você pode atacar uma chave SSH criptografada para tentar encontrar a senha, destacando a importância de usar uma senha complexa e manter sua chave privada privada.
+
+Ao gerar uma chave SSH para efetuar login em uma máquina remota, você deve gerar as chaves na sua máquina e, em seguida, copiar a chave pública, pois isso significa que a chave privada nunca existirá na máquina de destino usando ```ssh-copy-id```. No entanto, isso não importa tanto para chaves temporárias geradas para acessar caixas CTF.
+
+As permissões devem ser configuradas corretamente para usar uma chave SSH privada; caso contrário, seu cliente SSH ignorará o arquivo e emitirá um aviso. Somente o proprietário deve poder ler ou gravar na chave privada (600 ou mais restrita). ```ssh -i privateKeyFileName user@host``` é como você especifica uma chave para o cliente OpenSSH Linux padrão.
+
+### Chaves Confiáveis pelo Host Remoto
+A pasta ```~/.ssh``` é o local padrão para armazenar essas chaves para o OpenSSH. O arquivo authorized_keys (observe a ortografia em inglês americano) neste diretório contém chaves públicas que têm acesso permitido ao servidor se a autenticação de chave estiver habilitada. Por padrão, em muitas distribuições Linux, a autenticação de chave é habilitada, pois é mais segura do que usar uma senha para autenticação. Somente a autenticação de chave deve ser aceita se você quiser permitir acesso SSH para o usuário root.
+
+##Usando Chaves SSH para Obter um "Shell Melhor"
+Durante CTFs, testes de penetração e exercícios de red teaming, chaves SSH são uma excelente maneira de "atualizar" um shell reverso, desde que o usuário tenha o login habilitado. Observe que ```www-data``` geralmente não permite isso, mas usuários comuns e root podem funcionar. **```Deixar uma chave SSH no arquivo authorized_keys em uma máquina pode ser uma backdoor útil```**, e você não precisa lidar com nenhum dos problemas de shells reversos não estabilizados, como Control-C ou falta de conclusão de tabulação.
+
 # Diretórios Comuns
 
 ### /etc
