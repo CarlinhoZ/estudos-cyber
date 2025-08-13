@@ -72,7 +72,8 @@ Exemplo de Uso:
 ```
 Uma Observação sobre Formatos de Arquivo no Modo de Quebra Única:
 
-Se você estiver quebrando hashes no modo de quebra única, precisará alterar o formato do arquivo que está alimentando John para que ele entenda a partir de quais dados criar uma lista de palavras. Para fazer isso, adicione ao hash o nome de usuário ao qual ele pertence. Assim, de acordo com o exemplo acima, alteraríamos o arquivo hashes.txt.
+Se você estiver quebrando hashes no modo de quebra única, precisará alterar o formato do arquivo que está alimentando John para que ele entenda a partir de quais dados criar uma lista de palavras.
+Para fazer isso, adicione ao hash o nome de usuário ao qual ele pertence. Assim, de acordo com o exemplo acima, alteraríamos o arquivo hashes.txt.
 
 De 1efee03cdcb96d90ad48ccc7b8666033
 
