@@ -57,8 +57,8 @@ unshadow: Invoca a ferramenta unshadow
 [caminho para a sombra]: O arquivo que contém a cópia do arquivo /etc/shadow que você obteve da máquina de destino
 ```
 
-# Usando o Modo de Quebra Única
-Para usar o modo de quebra única, usamos praticamente a mesma sintaxe que usamos até agora; por exemplo, se quiséssemos quebrar a senha do usuário "Mike", usando o modo de quebra única, usaríamos:
+# Usando o Single Crack Mode
+Para usar o modo Single Crack Mode, usamos praticamente a mesma sintaxe que usamos até agora; por exemplo, se quiséssemos quebrar a senha do usuário "Mike", usando o modo de quebra única, usaríamos:
 
 ```john --single --format=[formato] [caminho para o arquivo]```
 
