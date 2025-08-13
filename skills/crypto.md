@@ -102,11 +102,19 @@ As tabelas rainbow são um método para quebrar hashes que não usam um salt, ma
 
 Você não pode "decifrar" hashes de senha. Eles não são criptografados. Você precisa quebrar os hashes fazendo o hash de várias entradas diferentes (como rockyou.txt, pois ele abrange muitas senhas possíveis), potencialmente adicionando o salt, se houver, e comparando-o com o hash de destino. Assim que houver correspondência, você saberá qual era a senha. Ferramentas como [Hashcat](https://hashcat.net/wiki/doku.php?id=example_hashes) e [John the Ripper](https://www.openwall.com/john/) são comumente usadas para esses fins.
 
+# Prefixos de senha mais comuns no estilo Unix
 
+* $y$ yescrypt: é um esquema de hash escalável e é a escolha padrão e recomendada em novos sistemas.
+* $gy$ gost-yescrypt: usa a função de hash GOST R 34.11-2012 e o método de hash yescrypt.
+* $7$ scrypt: é uma função de derivação de chaves baseada em senha.
+* $2b$, $2y$, $2a$, $2x$ bcrypt: é um hash baseado na cifra de bloco Blowfish, originalmente desenvolvida para OpenBSD, mas com suporte em versões recentes do FreeBSD, NetBSD, Solaris 10 e posteriores, e em diversas distribuições Linux.
+* $6$ sha512crypt: é um hash baseado em SHA-2 com saída de 512 bits, originalmente desenvolvido para GNU libc e comumente usado em sistemas Linux (mais antigos).
+* $md5 SunMD5: é um hash baseado no algoritmo MD5, originalmente desenvolvido para Solaris.
+* $1$ md5crypt: é um hash baseado no algoritmo MD5, originalmente desenvolvido para FreeBSD
 
-
-
-
+# Verificação de Integridade
+O hash pode ser usado para verificar se os arquivos não foram alterados. Se você inserir os mesmos dados, sempre obterá os mesmos dados. Mesmo que um único bit seja alterado, o hash mudará significativamente. Isso significa que você pode usá-lo para verificar se os arquivos não foram modificados ou para garantir que o arquivo baixado seja idêntico ao arquivo no servidor web. O arquivo de texto listado abaixo mostra o hash SHA256 de dois arquivos ISO do Fedora Workstation. Se a execução do comando ```sha256sum``` no arquivo baixado retornar o mesmo hash listado neste arquivo assinado, você pode ter certeza de que seu arquivo é idêntico ao arquivo oficial.
+Você também pode usar hash para encontrar arquivos duplicados; se dois documentos tiverem o mesmo hash, eles são o mesmo documento. Isso é muito conveniente para encontrar e excluir arquivos duplicados.
 
 
 
