@@ -147,10 +147,40 @@ Podemos então pegar o arquivo que geramos do zip2john em nosso caso de uso de e
 
 ```john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt```
 
+# Quebra de senhas de arquivos RAR utilizando o Rar2John
+Quase idêntico à ferramenta zip2john, usaremos a ferramenta rar2john para converter o arquivo RAR em um formato de hash que John possa entender. A sintaxe básica é a seguinte:
 
+```rar2john [arquivo rar] > [arquivo de saída]```
 
+* rar2john: Invoca a ferramenta rar2john
+* [arquivo rar]: O caminho para o arquivo RAR do qual deseja obter o hash
+* >: Isso redireciona a saída deste comando para outro arquivo
+* [arquivo de saída]: Este é o arquivo que armazenará a saída do comando
 
+Exemplo de Uso
 
+```/opt/john/rar2john rarfile.rar > rar_hash.txt```
+
+```john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt```
+
+# Quebrando Senhas de Chaves SSH
+Vamos explorar mais um uso do John que aparece com certa frequência em desafios de CTF: usar o John para quebrar a senha da chave privada SSH dos arquivos ```id_rsa```. A menos que configurado de outra forma, você autentica seu login SSH usando uma senha. No entanto, você pode configurar a autenticação baseada em chave, que permite usar sua chave privada, ```id_rsa```, como uma chave de autenticação para fazer login em uma máquina remota via SSH. No entanto, isso geralmente exigirá uma senha para acessar a chave privada; aqui, usaremos o John para quebrar essa senha e permitir a autenticação via SSH usando a chave.
+
+## SSH2John
+Como o nome sugere, o ```ssh2john``` converte a chave privada ```id_rsa```, que é usada para fazer login na sessão SSH, em um formato de hash com o qual o John pode trabalhar. Se não tiver o ssh2john instalado, podemos usar ```ssh2john.py```, localizado em ```/opt/john/ssh2john.py```.
+
+```ssh2john [arquivo de chave privada id_rsa] > [arquivo de saída]```
+
+* ssh2john: Chama a ferramenta ssh2john
+* [arquivo de chave privada id_rsa]: O caminho para o arquivo id_rsa do qual você deseja obter o hash
+* >: Este é o diretório de saída. Estamos usando-o para redirecionar a saída deste comando para outro arquivo.
+* [arquivo de saída]: Este é o arquivo que armazenará a saída de
+
+Exemplo de Uso
+
+```/opt/john/ssh2john.py id_rsa > id_rsa_hash.txt```
+
+```john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt```
 
 
 
