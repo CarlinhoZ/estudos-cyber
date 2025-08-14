@@ -80,10 +80,72 @@ De 1efee03cdcb96d90ad48ccc7b8666033
 Para mike:1efee03cdcb96d90ad48ccc7b8666033
 ```
 
+# Regras customizadas para crack usando John the Ripper
+As regras personalizadas são definidas no arquivo ```john.conf```. Geralmente, ele está localizado em ```/etc/john/john.conf``` se foi instalado usando um gerenciador de pacotes.
 
+A primeira linha:
 
+[List.Rules:None] é usada para definir o nome da sua regra; é isso que você usará para chamar sua regra personalizada de argumento John.
 
+Em seguida, usamos uma correspondência de padrão de estilo regex para definir onde a palavra será modificada; Aqui estão apenas os modificadores primários e mais comuns:
 
+* Az: Pega a palavra e a anexa com os caracteres que você definir
+* A0: Pega a palavra e a anexa com os caracteres que você definir
+* c: Coloca o caractere em maiúscula posicionalmente
+* 
+Eles podem ser usados em combinação para definir onde e o que na palavra você deseja modificar.
+
+Por fim, devemos definir quais caracteres devem ser anexados, prefixados ou incluídos de outra forma. Fazemos isso adicionando conjuntos de caracteres entre colchetes [ ] onde devem ser usados. Eles seguem os padrões de modificadores dentro de aspas duplas " ". Aqui estão alguns exemplos comuns:
+
+* [0-9]: Incluirá os números de 0 a 9
+* [0]: Incluirá apenas o número 0
+* [A-z]: Incluirá letras maiúsculas e minúsculas
+* [A-Z]: Incluirá apenas letras maiúsculas
+* [a-z]: Incluirá apenas letras minúsculas
+
+Observe que:
+
+* [a]: Incluirá apenas um
+* [!£$%@]: Incluirá os símbolos !, £, $, % e @
+Juntando tudo isso, para gerar uma lista de palavras a partir das regras que corresponderiam à senha de exemplo Polopassword1! (assumindo que a palavra polopassword esteja em nossa lista de palavras), criaríamos uma entrada de regra semelhante a esta:
+
+[List.Rules:PoloPassword]
+
+cAz"[0-9] [!£$%@]"
+
+Utiliza o seguinte:
+
+c: Coloca a primeira letra em maiúscula
+Az: Adiciona ao final da palavra
+[0-9]: Um número no intervalo de 0 a 9
+[!£$%@]: A senha é seguida por um destes símbolos
+
+## Usando Regras Personalizadas
+Poderíamos então chamar esta regra personalizada de argumento John usando a flag ```--rule=nome```.
+
+Como um comando completo: ```john --wordlist=[caminho para a lista de palavras] --rule=nome [caminho para o arquivo]```
+
+A propósito, acho útil discutir os padrões se você estiver escrevendo uma regra; como mostrado acima, o mesmo se aplica à escrita de padrões RegEx.
+
+# Quebra de senhas de arquivos ZIP utilizando o Zip2John
+Zip2John
+De forma semelhante à ferramenta ```unshadow``` que usamos anteriormente, usaremos a ferramenta ```zip2john``` para converter o arquivo Zip para um formato de hash que o John possa entender e, com sorte, quebrar. O uso principal é assim:
+
+```zip2john [opções] [arquivo zip] > [arquivo de saída]```
+
+* [opções]: Permite passar opções específicas de checksum para o zip2john; Isso não deve ser necessário com frequência
+* [arquivo zip]: O caminho para o arquivo Zip do qual você deseja obter o hash
+* >: Isso redireciona a saída deste comando para outro arquivo
+* [arquivo de saída]: Este é o arquivo que armazenará a saída
+
+Exemplo de Uso
+
+```zip2john zipfile.zip > zip_hash.txt```
+
+Cracking
+Podemos então pegar o arquivo que geramos do zip2john em nosso caso de uso de exemplo, ```zip_hash.txt```, e, como fizemos com o unshadow, alimentá-lo diretamente no John, já que criamos a entrada especificamente para ele.
+
+```john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt```
 
 
 
