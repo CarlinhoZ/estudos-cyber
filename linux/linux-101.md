@@ -1,5 +1,8 @@
 # Principais Comandos
 
+<img width="1080" height="1350" alt="image" src="https://github.com/user-attachments/assets/253e46d9-b7c1-4df8-853b-5553649bc284" />
+
+
 ### pipe
 Um pipe (representado pelo caractere "|") é um mecanismo que permite conectar a saída de um comando à entrada de outro, criando uma sequência de comandos onde a saída de um se torna a entrada do próximo. Isso permite que você crie comandos complexos combinando vários comandos menores, de forma eficiente e organizada.
 
