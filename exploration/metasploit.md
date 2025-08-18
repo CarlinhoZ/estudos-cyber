@@ -89,7 +89,7 @@ Os módulos post serão úteis na etapa final do processo de teste de penetraç�
 
 ---
 
-### 🔹 Sessões
+### Sessões
 
 * Quando o exploit funciona, cria-se uma **sessão** (ex: Meterpreter).
 * `background` ou `CTRL+Z` → coloca sessão em segundo plano.
@@ -100,11 +100,91 @@ Os módulos post serão úteis na etapa final do processo de teste de penetraç�
 
 ```
 Em resumo:
-O texto explica como navegar no Metasploit, configurar parâmetros de módulos (principalmente RHOSTS, RPORT, LHOST, LPORT), rodar exploits, lidar com sessões abertas e usar recursos como `setg` e `unset`. O exemplo todo gira em torno do exploit **MS17-010 (EternalBlue)**, mostrando passo a passo desde a configuração até abrir uma sessão **Meterpreter** no alvo.
+O texto explica como navegar no Metasploit, configurar parâmetros de módulos (principalmente RHOSTS, RPORT, LHOST, LPORT), rodar exploits, lidar com sessões abertas e usar recursos como `setg` e `unset`.
+O exemplo todo gira em torno do exploit **MS17-010 (EternalBlue)**, mostrando passo a passo desde a configuração até abrir uma sessão **Meterpreter** no alvo.
 ```
 
+# Escaneamento de Portas com Metasploit
 
+* O Metasploit tem módulos para varrer portas abertas (`search portscan`).
+* Principais parâmetros:
 
+* CONCURRENCY → quantos alvos ao mesmo tempo.
+* PORTS → intervalo de portas (no Metasploit é numérico, diferente do Nmap que usa as 1000 mais comuns).
+* RHOSTS → alvo/rede.
+* THREADS → velocidade do scan.
+ 
+* Dá pra rodar o **Nmap dentro do msfconsole**.
+* Metasploit não substitui o Nmap em rapidez, mas é útil no processo de reconhecimento.
+
+## Identificação de serviços UDP
+
+* O módulo `scanner/discovery/udp_sweep` encontra rapidamente serviços em UDP (como DNS e NetBIOS).
+* Não faz varredura completa, mas é bom pra achar serviços relevantes.
+
+##Varreduras SMB e NetBIOS
+
+**Módulos úteis:**
+* `smb_enumshares` → lista compartilhamentos.
+* `smb_version` → mostra versão do SMB.
+ 
+**O **NetBIOS** também é importante, pode revelar:**
+
+* Nome de máquina (ex.: `CORP-DC`, `DEVOPS`).
+* Pastas e arquivos compartilhados, muitas vezes sem senha ou com senha fraca (`admin`, `toor` etc.).
+
+#  O que são “low hanging fruit”?
+
+Vulnerabilidades fáceis de identificar e explorar, que podem dar acesso inicial ao sistema (às vezes até root/administrator).
+
+---
+
+### Papel do Metasploit
+
+* Depende muito da **varredura e fingerprinting** bem feitos.
+* Quanto mais informações do alvo, mais módulos úteis podem ser aplicados.
+* Exemplo: se identificar um serviço **VNC**, pode usar os módulos de scanner do Metasploit para procurar falhas.
+
+---
+
+### Exemplo prático — VNC
+
+* Buscar módulos:
+
+  ```
+  search vnc
+  use auxiliary/scanner/vnc/
+  ```
+
+* Exemplos de módulos encontrados:
+
+  * `auxiliary/scanner/vnc/ard_root_pw`
+  * `auxiliary/scanner/vnc/vnc_login`
+  * `auxiliary/scanner/vnc/vnc_none_auth`
+
+* Comando para entender cada módulo:
+
+  ```
+  info
+  ```
+
+---
+
+### Módulo vnc\_login
+
+* Permite testar logins em servidores VNC (versões 3.3, 3.7, 3.8 e 4.001).
+
+* Suporta wordlists e credenciais do banco de dados.
+
+* Principais opções:
+
+  * `RHOSTS` → alvo(s)
+  * `RPORT` → porta (padrão 5900)
+  * `PASS_FILE` → wordlist de senhas
+  * `STOP_ON_SUCCESS` → parar após achar credencial válida
+  * `THREADS` → número de threads
+
+* Resultado: reporta logins válidos encontrados.
 
 
 
