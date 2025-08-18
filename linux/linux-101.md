@@ -12,10 +12,10 @@ Exemplos:
 * cat file.txt | grep "texto": Lê o conteúdo de file.txt e filtra as linhas que contêm a palavra "texto". 
 * ps aux | grep "httpd" | wc -l: Lista todos os processos em execução, filtra aqueles que contêm "httpd" e conta o número de linhas resultantes, mostrando quantos processos httpd estão ativos.
 
-# gunzip
+### gunzip
 Descompactar arquivos em formato .gz
 
-# tar
+### tar
 Descompactar arquivos em formato .tar
 
 ### echo
