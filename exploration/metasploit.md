@@ -281,6 +281,147 @@ O `msfvenom` substituiu o `msfpayload` e `msfencode`. Ele serve pra gerar payloa
 * Você pode criar payloads em praticamente qualquer linguagem/sistema.
 * Todos os exemplos dados são **reverse shells** (a vítima conecta de volta em você).
 
+# Meterpreter
+O Meterpreter é um payload do Metasploit que suporta o processo de teste de penetração com muitos componentes valiosos. O Meterpreter será executado no sistema de destino e atuará como um agente dentro de uma arquitetura de comando e controle. Você interagirá com o sistema operacional e os arquivos de destino e usará os comandos especializados do Meterpreter.
+
+O Meterpreter possui diversas versões que oferecem diferentes funcionalidades com base no sistema de destino.
+
+## Como o Meterpreter funciona?
+O Meterpreter é executado no sistema de destino, mas não é instalado nele. Ele é executado na memória e não grava a si mesmo no disco do alvo. Esse recurso visa evitar a detecção durante varreduras antivírus. Por padrão, a maioria dos softwares antivírus verifica novos arquivos no disco (por exemplo, quando você baixa um arquivo da internet). O Meterpreter é executado na memória (RAM - Memória de Acesso Aleatório) para evitar que um arquivo precise ser gravado no disco do sistema de destino (por exemplo, meterpreter.exe). Dessa forma, o Meterpreter será visto como um processo e não terá um arquivo no sistema de destino.
+
+O Meterpreter também visa evitar a detecção por soluções de IPS (Sistema de Prevenção de Intrusão) e IDS (Sistema de Detecção de Intrusão) baseadas em rede, utilizando comunicação criptografada com o servidor onde o Metasploit é executado (normalmente a máquina do invasor). Se a organização alvo não descriptografar e inspecionar o tráfego criptografado (por exemplo, HTTPS) que entra e sai da rede local, as soluções de IPS e IDS não conseguirão detectar suas atividades.
+
+Embora o Meterpreter seja reconhecido pela maioria dos softwares antivírus, esse recurso oferece algum grau de sigilo.
+
+* Payloads podem ser staged (enviados em duas etapas: stager + payload) ou inline (tudo de uma vez).
+* O Meterpreter também tem versões staged e inline, e existem várias versões diferentes para cada sistema.
+
+Dá para ver todas as versões com o comando:
+
+```msfvenom --list payloads | grep meterpreter```
+
+
+Ele está disponível para várias plataformas: Android, iOS, Java, Linux, macOS, PHP, Python e Windows.
+
+A escolha da versão depende de:
+* Sistema operacional do alvo.
+* Componentes disponíveis (se tem Python, PHP, etc.).
+* Tipo de conexão de rede possível (TCP, HTTPS, IPv6, etc.).
+* Se usar junto com um exploit, às vezes a escolha do Meterpreter é limitada pelo exploit em si.
+
+## Comandos utilizados no Meterpreter
+Cada versão do Meterpreter terá diferentes opções de comando, portanto, executar o comando ```help``` é sempre uma boa ideia. Os comandos são ferramentas integradas disponíveis no Meterpreter. Eles serão executados no sistema de destino sem carregar nenhum script ou arquivo executável adicional.
+
+O Meterpreter fornecerá três categorias principais de ferramentas:
+
+* Comandos integrados
+* Ferramentas do Meterpreter
+* Scripts do Meterpreter
+
+Se você executar o comando help, verá que os comandos do Meterpreter estão listados em diferentes categorias.
+
+* Comandos principais
+* Comandos do sistema de arquivos
+* Comandos de rede
+* Comandos do sistema
+* Comandos da interface do usuário
+* Comandos da webcam
+* Comandos de saída de áudio
+* Comandos Elevate
+* Comandos do banco de dados de senhas
+* Comandos Timestomp
+
+Comandos do Meterpreter
+
+Os comandos principais serão úteis para navegar e interagir com o sistema de destino. Abaixo estão alguns dos mais usados. Lembre-se de verificar todos os comandos disponíveis executando o comando help após o início de uma sessão do Meterpreter.
+
+```
+Comandos principais
+
+background: Coloca a sessão atual em segundo plano
+exit: Encerra a sessão do Meterpreter
+guid: Obtém o GUID (Identificador Global Único) da sessão
+help: Exibe o menu de ajuda
+info: Exibe informações sobre um módulo Post
+irb: Abre um shell Ruby interativo na sessão atual
+load: Carrega uma ou mais extensões do Meterpreter
+migrate: Permite migrar o Meterpreter para outro processo
+run: Executa um script do Meterpreter ou módulo Post
+sessions: Alterna rapidamente para outra sessão
+
+Comandos do sistema de arquivos
+
+cd: Altera o diretório
+ls: Lista os arquivos no diretório atual (dir também funciona)
+pwd: Exibe o diretório de trabalho atual
+edit: Permite editar um arquivo
+cat: Exibe o conteúdo de um arquivo na tela
+rm: Exclui o arquivo especificado
+search: Busca por arquivos
+upload: Envia um arquivo ou diretório
+download: Baixa um arquivo ou diretório
+
+Comandos de rede
+
+arp: Exibe o ARP do host (Protocolo de Resolução de Endereços) cache
+ifconfig: Exibe as interfaces de rede disponíveis no sistema de destino
+netstat: Exibe as conexões de rede
+portfwd: Encaminha uma porta local para um serviço remoto
+route: Permite visualizar e modificar a tabela de roteamento
+
+Comandos do sistema
+
+clearev: Limpa os logs de eventos
+execute: Executa um comando
+getpid: Exibe o identificador do processo atual
+getuid: Mostra o usuário que está executando o Meterpreter
+kill: Encerra um processo
+pkill: Encerra processos por nome
+ps: Lista os processos em execução
+reboot: Reinicia o computador remoto
+shell: Entra em um shell de comando do sistema
+shutdown: Desliga o computador remoto
+sysinfo: Obtém informações sobre o sistema remoto, como o SO
+
+Outros Comandos
+
+idletime: Retorna o número de segundos em que o usuário remoto ficou ocioso
+keyscan_dump: Esvazia o buffer de pressionamento de tecla
+keyscan_start: Inicia a captura teclas digitadas
+keyscan_stop: Interrompe a captura de teclas digitadas
+screenshare: Permite que você monitore a área de trabalho do usuário remoto em tempo real
+screenshot: Captura uma captura de tela da área de trabalho interativa
+record_mic: Grava áudio do microfone padrão por X segundos
+webcam_chat: Inicia um bate-papo por vídeo
+webcam_list: Lista webcams
+webcam_snap: Tira uma foto da webcam especificada
+webcam_stream: Reproduz um fluxo de vídeo da webcam especificada
+getsystem: Tenta elevar seu privilégio ao do sistema local
+hashdump: Exibe o conteúdo do banco de dados SAM
+```
+
+## Pós-Exploração
+O comando ```getuid``` exibirá o usuário com o qual o Meterpreter está sendo executado no momento. Isso lhe dará uma ideia do seu possível nível de privilégio no sistema de destino (por exemplo, você é um usuário de nível administrativo, como NT AUTHORITY\SYSTEM, ou um usuário comum?)
+
+O comando ```ps``` listará os processos em execução. A coluna PID também fornecerá as informações de PID necessárias para migrar o Meterpreter para outro processo.
+
+Migrar para outro processo ajudará o Meterpreter a interagir com ele. Por exemplo, se você vir um processador de texto em execução no processo de destino (por exemplo, word.exe, notepad.exe, etc.), você pode migrar para ele e começar a capturar as teclas digitadas pelo usuário para esse processo. Algumas versões do Meterpreter oferecem os comandos ```keyscan_start```, ```keyscan_stop``` e ```keyscan_dump``` para fazer o Meterpreter funcionar como um keylogger. Migrar para outro processo também pode ajudar a ter uma sessão do Meterpreter mais estável.
+
+Para migrar para qualquer processo, você precisa digitar o comando ```migrate seguido do PID do processo de destino desejado```.
+
+Você pode perder seus privilégios de usuário se migrar de um usuário com privilégios mais altos (por exemplo, SISTEMA) para um processo iniciado por um usuário com privilégios mais baixos (por exemplo, servidor web). Você pode não conseguir recuperá-los.
+
+O comando ```hashdump``` listará o conteúdo do banco de dados SAM. O banco de dados SAM (Security Account Manager) armazena as senhas dos usuários em sistemas Windows. Essas senhas são armazenadas no formato NTLM (New Technology LAN Manager).
+
+Embora não seja matematicamente possível "quebrar" esses hashes, você ainda pode descobrir a senha em texto simples usando bancos de dados NTLM online ou um ataque de rainbow table. Esses hashes também podem ser usados em ataques Pass-the-Hash para autenticar em outros sistemas que esses usuários podem acessar a mesma rede.
+
+O comando ```search``` é útil para localizar arquivos com informações potencialmente valiosas. Em um contexto de CTF, ele pode ser usado para encontrar rapidamente um arquivo de sinalizador ou prova, enquanto em testes de penetração reais, você pode precisar procurar por arquivos gerados pelo usuário ou arquivos de configuração que podem conter senhas ou informações de conta.
+
+```search -f flag2.txt```
+
+O comando ```shell``` iniciará um shell de linha de comando comum no sistema de destino. Pressionar CTRL+Z ajudará você a retornar ao shell do Meterpreter.
+
+
 
 
 
