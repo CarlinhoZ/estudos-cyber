@@ -98,12 +98,6 @@ Os módulos post serão úteis na etapa final do processo de teste de penetraç�
 
 ---
 
-```
-Em resumo:
-O texto explica como navegar no Metasploit, configurar parâmetros de módulos (principalmente RHOSTS, RPORT, LHOST, LPORT), rodar exploits, lidar com sessões abertas e usar recursos como `setg` e `unset`.
-O exemplo todo gira em torno do exploit **MS17-010 (EternalBlue)**, mostrando passo a passo desde a configuração até abrir uma sessão **Meterpreter** no alvo.
-```
-
 # Escaneamento de Portas com Metasploit
 
 * O Metasploit tem módulos para varrer portas abertas (`search portscan`).
