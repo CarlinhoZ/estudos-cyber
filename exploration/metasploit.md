@@ -421,10 +421,16 @@ O comando ```search``` é útil para localizar arquivos com informações potenc
 
 O comando ```shell``` iniciará um shell de linha de comando comum no sistema de destino. Pressionar CTRL+Z ajudará você a retornar ao shell do Meterpreter.
 
+A fase de pós-exploração terá vários objetivos; o Meterpreter possui funções que podem auxiliar em todos eles.
 
+* Coletar mais informações sobre o sistema de destino.
+* Procurar por arquivos interessantes, credenciais de usuário, interfaces de rede adicionais e informações gerais de interesse sobre o sistema de destino.
+* Escalonamento de privilégios.
+* Movimento lateral.
 
+Depois que qualquer ferramenta adicional for carregada usando o comando ```load```, você verá novas opções no menu de ajuda.
 
-
+As perguntas abaixo ajudarão você a entender melhor como o Meterpreter pode ser usado em situações pós-exploração.
 
 
 
