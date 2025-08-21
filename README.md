@@ -7,5 +7,5 @@ O objetivo deste portfólio é documentar minha jornada, compartilhar conhecimen
 
 O que você vai encontrar por aqui:
 
-📝 Estudos e laboratórios: tópicos que estou aprendendo e aplicando.
-💡 Ideias em andamento: rascunhos de projetos e provas de conceito.
+* Estudos e laboratórios: tópicos que estou aprendendo e aplicando.
+* Ideias em andamento: rascunhos de projetos e provas de conceito.
