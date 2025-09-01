@@ -8,6 +8,10 @@ Outra ferramenta valiosa para solução de problemas é o tracert, que significa
 ## nslookup
 Um comando de rede que vale a pena conhecer é o ```nslookup```. Ele procura um host ou domínio e retorna seu endereço IP. A sintaxe ```nslookup example.com``` pesquisará example.com usando o servidor de nomes padrão; no entanto, o ```nslookup example.com 1.1.1.1``` usará o servidor de nomes one.one.one.one.
 
+## icacls
+```icacls "C:\System Volume Information" /grant "Administrators:F"```
+Exemplod de comando para ajustar permissão na pasta, garantindo acesso.
+
 ## netstat 
 Este comando exibe as conexões de rede atuais e as portas de escuta. Um comando netstat básico, sem argumentos, mostrará as conexões estabelecidas.
 
