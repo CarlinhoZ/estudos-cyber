@@ -20,8 +20,17 @@
 * Pode ser acessado via CLI
 * Usuário e senha default (admin, sem senha)
 
+# Políticas de firewall
+## Firewall Policy
+* Regra comum para navegação interna, utiliza os perfils de segurança para gerenciar os aplicativos e websites permitidos.
 
+## Multicast Policy
 
+## Local in Policy
+* tráfego interno, permitir o que o firewall pode ou não fazer, por exemplo um ping
+
+## IPv4 DoS Policy
+* configura métricas de quanto TCP SYN você pode receber, ICMP Flood
 
 
 
