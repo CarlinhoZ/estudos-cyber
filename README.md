@@ -9,5 +9,3 @@ O que você vai encontrar por aqui:
 
 * Estudos e laboratórios: tópicos que estou aprendendo e aplicando.
 * Ideias em andamento: rascunhos de projetos e provas de conceito.
-
-<img src="https://tryhackme-badges.s3.amazonaws.com/neweriduproxy.png" alt="Your Image Badge" />
