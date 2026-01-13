@@ -2,7 +2,7 @@
 * [Manual de comandos do Linux via web](https://www.die.net)
 * [Kali Linux](https://www.kali.org/docs/)
 
-# Microsoft Windows
+# Microsoft Windows 
 * [Documentação oficial da Microsoft](https://learn.microsoft.com/pt-br/)
 * [Powershell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4)
 
