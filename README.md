@@ -1,3 +1,5 @@
+<img src="https://tryhackme-badges.s3.amazonaws.com/neweriduproxy.png" alt="Your Image Badge" />
+
 # Sobre este Portfólio
 
 Este repositório reúne meus estudos, projetos e experimentos na área de segurança da informação.
